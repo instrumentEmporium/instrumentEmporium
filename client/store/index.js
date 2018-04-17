@@ -5,7 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './reducers/user'
 import instruments from './reducers/instrument'
 
-const reducer = combineReducers({user, instruments})
+export const reducer = combineReducers({user, instruments})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
