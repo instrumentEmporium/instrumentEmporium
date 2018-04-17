@@ -4,7 +4,6 @@ import Instrument from './Instrument';
 export default class InstrumentList extends React.Component {
   componentDidMount() {
     this.props.loadInstruments();
-    console.log("look here", this.props)
   }
 
   render(){
