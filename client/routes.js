@@ -4,7 +4,8 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Home} from './components'
 import {me} from './store'
-import InstrumentListContainer from './containers/InstrumentListContainer';
+import InstrumentListContainer from './containers/InstrumentListContainer'
+import SingleInstrumentContainer from './containers/SingleInstrumentContainer'
 
 /**
  * COMPONENT
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/instruments" component={InstrumentListContainer} />
+        <Route exact path="/instruments/:id" component={SingleInstrumentContainer} />
         {
           isLoggedIn &&
             <Switch>
