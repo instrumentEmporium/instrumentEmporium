@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
-import { Menu, Segment } from 'semantic-ui-react';
+import { Menu, Segment, Icon } from 'semantic-ui-react';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -24,6 +24,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <Menu.Item as={ Link } to="/instruments" name='Instruments' />
             <Menu.Item as={ Link } to="/login" name='Login' style={{left: '75%'}} />
             <Menu.Item as={ Link } to="/signup" name='Signup' style={{left: '75%'}} />
+            <Menu.Item as={ Link } to="/cart" style={{left: '75%'}}>
+              <Icon name="cart" size="large" color="teal" />
+            </Menu.Item>
           </Menu>
         )}
     </Segment>

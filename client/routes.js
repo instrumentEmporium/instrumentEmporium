@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
-import {me} from './store'
-import InstrumentListContainer from './containers/InstrumentListContainer'
-import SingleInstrumentContainer from './containers/SingleInstrumentContainer'
-import HomeContainer from './containers/HomeContainer'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter, Route, Switch} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {Login, Signup, UserHome} from './components';
+import {me} from './store';
+import InstrumentListContainer from './containers/InstrumentListContainer';
+import SingleInstrumentContainer from './containers/SingleInstrumentContainer';
+import HomeContainer from './containers/HomeContainer';
 
 /**
  * COMPONENT
