@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import SingleInstrument from './SingleInstrument';
+import { Icon, Button, Container, Header, Image } from 'semantic-ui-react';
+import Carousel from 'react-responsive-carousel';
 import Instrument from './Instrument';
 
 
@@ -12,15 +14,28 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { topFive } = this.props; 
+    const { topFive } = this.props;
     console.log(topFive)
-    return(
+    return (
       <div>
-        <h2> Welcome to the Instrument Emporium!</h2>
-        <button>
-          <Link to="/instruments"> Explore all our products </Link>
-        </button>
-        { 
+      <Container
+       text textAlign="center">
+       <Header
+          as="h1"
+          content="Welcome to the Instrument Emporium!"
+          style={{
+            fontSize: '3em',
+            fontWeight: 'normal',
+            marginBottom: '100px',
+            marginTop: '3em',
+          }}
+        />
+        <Button as={ Link } to="/instruments" color="yellow" size="huge">
+          Explore our products
+          <Icon name="right arrow" />
+        </Button>
+    </Container>
+        {
           topFive && topFive.map(instrument => {
             return (
               <Instrument instrument={instrument} key={instrument.id} />
