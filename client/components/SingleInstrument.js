@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, Image } from 'semantic-ui-react';
+import { Dropdown, Image, Grid } from 'semantic-ui-react';
 
 const options = [
     { key: 1, text: "1", value: 1 },
@@ -14,7 +14,7 @@ const options = [
 export default class SingleInstrument extends React.Component {
     componentDidMount() {
         if (this.props.loadInstrument) {
-            this.props.loadInstrument()
+            this.props.loadInstrument();
         }
     }
 
@@ -23,14 +23,36 @@ export default class SingleInstrument extends React.Component {
         const { instrument } = this.props;
         return (
             <div>
-                <Link to={'/'}> <h2> Back to view </h2> </Link>  {/* link to previous page, history or something */}
-                <Image src={instrument.imageUrl} />
-                <div>Name: {instrument.name}</div>
-                <div>Price: {instrument.price}</div>
-                <div>Rating: {instrument.rating} </div>
-                <div>Quantity:
-                <Dropdown options={options}/>
-                </div>
+                <Link to={'/instruments'}><h4>Back to all instruments</h4></Link>  {/* link to previous page, history or something */}
+                <Grid>
+                    <Grid.Column width={1}>
+                    </Grid.Column>
+                    <Grid.Column width={12}>
+                    <Grid celled>
+                        <Grid.Column width={3}>
+                            <Image src={instrument.imageUrl} />
+                        </Grid.Column>
+                        <Grid.Column width={8}>
+                            <Grid.Row>
+                                <h3>Name: {instrument.name}</h3>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <h3>Price: {instrument.price}</h3>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <h3>Rating: {instrument.rating} </h3>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <h3>Quantity:
+                        <Dropdown compact selection defaultValue={1} options={options} />
+                                </h3>
+                            </Grid.Row>
+                        </Grid.Column>
+                    </Grid>
+                    </Grid.Column>
+                    <Grid.Column width={1}>
+                    </Grid.Column>
+                </Grid>
             </div>
         )
     }
