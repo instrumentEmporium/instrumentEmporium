@@ -12,7 +12,9 @@ const options = [
 // 
 
 export default class SingleInstrument extends React.Component {
-    componentDidMount() {
+    
+
+    componentDidMount() { 
         if (this.props.loadInstrument) {
             this.props.loadInstrument();
         }
@@ -20,7 +22,7 @@ export default class SingleInstrument extends React.Component {
 
     render() {
         console.log(this.props)
-        const { instrument } = this.props;
+        const { singleInstrument } = this.props;
         return (
             <div>
                 <Link to={'/instruments'}><h4>Back to all instruments</h4></Link>  {/* link to previous page, history or something */}
@@ -30,17 +32,17 @@ export default class SingleInstrument extends React.Component {
                     <Grid.Column width={12}>
                     <Grid celled>
                         <Grid.Column width={3}>
-                            <Image src={instrument.imageUrl} />
+                            <Image src={singleInstrument && singleInstrument.imageUrl} />
                         </Grid.Column>
                         <Grid.Column width={8}>
                             <Grid.Row>
-                                <h3>Name: {instrument.name}</h3>
+                                <h3>Name: {singleInstrument && singleInstrument.name}</h3>
                             </Grid.Row>
                             <Grid.Row>
-                                <h3>Price: {instrument.price}</h3>
+                                <h3>Price: {singleInstrument && singleInstrument.price}</h3>
                             </Grid.Row>
                             <Grid.Row>
-                                <h3>Rating: {instrument.rating} </h3>
+                                <h3>Rating: {singleInstrument && singleInstrument.rating} </h3>
                             </Grid.Row>
                             <Grid.Row>
                                 <h3>Quantity:

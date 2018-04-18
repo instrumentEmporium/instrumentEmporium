@@ -17,18 +17,14 @@ router.get('/', (req, res, next) => {
 router.get('/top-five', (req, res, next) => {
   Instrument.findAll()
   .then( instruments => {
-      return Instrument.getTopRating(instruments)
+    return Instrument.getTopRating(instruments)
   })
   .then(topFive => res.json(topFive))
   .catch(next);
 });
 
 router.get('/:id', (req, res, next) => {
-  Instrument.findAll({
-    where: {
-      id: req.params.id
-    }
-  })
+  Instrument.findById(req.params.id)
   .then( instrument => {
     if (instrument){
       res.status(200).json(instrument);
