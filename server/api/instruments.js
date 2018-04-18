@@ -5,6 +5,7 @@ const { Instrument } = require('../db/models');
 router.get('/', (req, res, next) => {
   Instrument.findAll({})
   .then( instruments => {
+    // OB/SZ: I think instruments will always be truthy
     if (instruments){
       res.status(200).json(instruments);
     } else {
