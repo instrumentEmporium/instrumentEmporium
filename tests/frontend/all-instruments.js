@@ -14,10 +14,9 @@ describe('store/reducers/instrument', () => {
       testingStore = createStore(reducer);
   });
 
-  it('has an initial state as described', () => {
+  it('has an initial state of an empty array of instruments', () => {
       const currentStoreState = testingStore.getState();
       // Our initial state has two properties as shown.
-      expect(currentStoreState.instruments).to.be.equal(false);
-      expect(currentStoreState.instruments).to.be.deep.equal([]);
+      expect(currentStoreState).to.be.deep.equal([]);
   })
-})
+});
