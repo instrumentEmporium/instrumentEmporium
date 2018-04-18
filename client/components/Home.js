@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import SingleInstrument from './SingleInstrument';
-import { Icon, Button, Container, Header, Image } from 'semantic-ui-react';
+import { Icon, Button, Container, Header, Image, Grid } from 'semantic-ui-react';
 import Instrument from './Instrument';
 
 
@@ -14,33 +14,42 @@ export default class Home extends React.Component {
 
   render() {
     const { topFive } = this.props;
-    console.log(topFive)
     return (
-      <div>
-      <Container
-       text textAlign="center">
-       <Header
-          as="h1"
-          content="Welcome to the Instrument Emporium!"
+      <div >
+        <Container
+          className='homeLanding'
           style={{
-            fontSize: '3em',
-            fontWeight: 'normal',
             marginBottom: '100px',
-            marginTop: '3em',
+            width: '100%'
           }}
-        />
-        <Button as={ Link } to="/instruments" color="yellow" size="huge">
-          Explore our products
-          <Icon name="right arrow" />
-        </Button>
-    </Container>
-        {
-          topFive && topFive.map(instrument => {
-            return (
-              <Instrument instrument={instrument} key={instrument.id} />
-            )
-          })
-        }
+          text textAlign="center">
+          <Header
+            as='h1'
+            content="Welcome to the Instrument Emporium!"
+            style={{
+              fontSize: '3em',
+              fontWeight: 'normal',
+              color: 'white',
+              marginBottom: '100px',
+            }}
+          >
+          </Header>
+          <Button as={Link} to="/instruments" color="yellow" size="huge">
+            Explore our products
+          <Icon name='right arrow' />
+          </Button>
+        </Container>
+        <Grid textAlign='center'>
+          {
+            topFive && topFive.map(instrument => {
+              return (
+                <Grid.Column width={3} key={instrument.id}>
+                  <Instrument instrument={instrument} />
+                </Grid.Column>
+              )
+            })
+          }
+        </Grid>
       </div>
     )
   }
