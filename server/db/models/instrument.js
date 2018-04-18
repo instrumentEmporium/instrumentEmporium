@@ -54,4 +54,10 @@ const Instrument = db.define('instrument', {
   }
 })
 
+Instrument.getTopRating = function(instruments) {
+  let sorted = instruments.sort((a, b) => parseFloat(a.rating) - parseFloat(b.rating));
+  const topFive = sorted.slice(0, 5);
+  return topFive;
+};
+
 module.exports = Instrument

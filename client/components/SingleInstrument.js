@@ -19,6 +19,7 @@ export default class SingleInstrument extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         const { instrument } = this.props;
         return (
             <div>
@@ -56,3 +57,7 @@ export default class SingleInstrument extends React.Component {
         )
     }
 }
+
+/*
+
+*/
