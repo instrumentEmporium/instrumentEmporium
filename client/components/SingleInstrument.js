@@ -12,9 +12,14 @@ const options = [
 // 
 
 export default class SingleInstrument extends React.Component {
-    
+    componentDidMount() {
+        if (this.props.loadInstrument) {
+            this.props.loadInstrument()
+        }
+    }
 
     render() {
+        console.log(this.props)
         const { instrument } = this.props;
         return (
             <div>
@@ -30,3 +35,7 @@ export default class SingleInstrument extends React.Component {
         )
     }
 }
+
+/*
+
+*/

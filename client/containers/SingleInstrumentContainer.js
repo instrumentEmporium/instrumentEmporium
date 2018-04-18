@@ -9,6 +9,7 @@ const mapStateToProps = (storeState, ownProps) => ({
   
   const mapDispatchToProps = (dispatch, ownProps) => ({
     loadInstrument: () => {
+      console.log(ownProps.match.params.id);
       const action = fetchOneInstrument(ownProps.match.params.id);
       return dispatch(action);
     }

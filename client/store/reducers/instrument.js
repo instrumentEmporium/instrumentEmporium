@@ -14,6 +14,7 @@ export const upsertInstrument = instrument => ({
   type: UPSERT_INSTRUMENT,
   singleInstrument: instrument
 })
+
 //THUNK CREATORS
 export const fetchInstruments = () => {
   return dispatch => {
