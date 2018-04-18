@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Image, Grid, Header, Icon } from 'semantic-ui-react'
 
 export default class Instrument extends React.Component {
   componentDidMount() {
@@ -11,13 +12,18 @@ export default class Instrument extends React.Component {
   render() {
     const { instrument } = this.props;
     return (
-      <React.Fragment>
-        <h2>
+      <Grid.Column>
+        <Header as="h3">
           <Link to={`/instruments/${instrument.id}`}>
             {instrument.name}
           </Link>
-        </h2>
-      </React.Fragment>
+        </Header>
+        <Image src={instrument.imageUrl} size="small" rounded bordered centered />
+        Price: ${instrument.price}
+        <p>Rating:
+            <Icon name="star" color="grey" />
+        </p>
+      </Grid.Column>
     )
   }
 }
