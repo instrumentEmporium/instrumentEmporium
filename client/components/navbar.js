@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
+import { Menu, Segment } from 'semantic-ui-react';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>Instrument Emporium</h1>
-    <nav>
+
+    <Segment inverted>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -17,16 +18,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           </a>
         </div>
       ) : (
-          <div>
+          <Menu inverted>
             {/* The navbar will show these links before you log in */}
-            <Link to="/">Home</Link>
-            <Link to="/instruments"> Instruments</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
+            <Menu.Item as={ Link } to="/" name='Home' />
+            <Menu.Item as={ Link } to="/instruments" name='Instruments' />
+            <Menu.Item as={ Link } to="/login" name='Login' style={{left: '75%'}} />
+            <Menu.Item as={ Link } to="/signup" name='Signup' style={{left: '75%'}} />
+          </Menu>
         )}
-    </nav>
-    <hr />
+    </Segment>
+
   </div>
 )
 
