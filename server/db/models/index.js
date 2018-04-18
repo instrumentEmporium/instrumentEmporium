@@ -1,6 +1,6 @@
 const User = require('./user');
 const Instrument = require('./instrument');
-
+const Review = require('./review');
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -14,7 +14,14 @@ const Instrument = require('./instrument');
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+User.hasMany(Review, { onDelete: 'cascade', hooks: true });
+Instrument.hasMany(Review, { onDelete: 'cascade', hooks: true });
+Review.belongsTo(User, { onDelete: 'cascade', hooks: true });
+Review.belongsTo(Instrument, { onDelete: 'cascade', hooks: true });
+
 module.exports = {
   User,
-  Instrument
+  Instrument,
+  Review
 }
+

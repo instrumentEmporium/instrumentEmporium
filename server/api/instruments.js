@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Instrument } = require('../db/models');
-
+const { Review } = require('../db/models');
 
 router.get('/', (req, res, next) => {
   Instrument.findAll({})
@@ -24,14 +24,15 @@ router.get('/top-five', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  Instrument.findById(req.params.id)
-  .then( instrument => {
-    if (instrument){
-      res.status(200).json(instrument);
-    } else {
-      res.sendStatus(404);
+  Instrument.findOne({
+    where: {
+      id: +req.params.id
+    },
+    include: {
+      model: Review
     }
   })
+  .then(instrument => res.json(instrument))
   .catch(next);
 })
 
