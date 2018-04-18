@@ -15,6 +15,7 @@ export default class SingleInstrument extends React.Component {
     
 
     componentDidMount() { 
+        // OB/SZ: is this check necessary?
         if (this.props.loadInstrument) {
             this.props.loadInstrument();
         }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// OB/SZ: commented out code should not be in master
 // import SingleInstrument from './SingleInstrument';
 import { Icon, Button, Container, Header, Image } from 'semantic-ui-react';
 import Carousel from 'react-responsive-carousel';
@@ -15,6 +16,7 @@ export default class Home extends React.Component {
 
   render() {
     const { topFive } = this.props;
+    // OB/SZ: chop down logs in master
     console.log(topFive)
     return (
       <div>
@@ -24,6 +26,7 @@ export default class Home extends React.Component {
           as="h1"
           content="Welcome to the Instrument Emporium!"
           style={{
+            // OB/SZ: consider moving this object up to line 8-ish and naming it
             fontSize: '3em',
             fontWeight: 'normal',
             marginBottom: '100px',

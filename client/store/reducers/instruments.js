@@ -26,6 +26,7 @@ export const fetchInstruments = () => {
         const action = getInstruments(instruments);
         dispatch(action);
       });
+      // OB/SZ: consider error handling, instead of console.log, try something that reports the user, e.g. this: https://github.com/tomchentw/react-toastr
   };
 };
 

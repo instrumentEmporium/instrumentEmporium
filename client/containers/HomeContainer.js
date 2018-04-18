@@ -7,6 +7,12 @@ const mapStateToProps = (storeState, ownProps) => ({
     topFive: storeState.topFive
 });
 
+// OB/SZ: common pattern in react-redux, can use the "object" form instead
+/*
+const mapDispatchToProps = {
+  loadTopFive: fetchTopFive
+};
+*/
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadTopFive: () => {
     const action = fetchTopFive();
