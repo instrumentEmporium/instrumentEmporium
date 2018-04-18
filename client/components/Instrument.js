@@ -10,6 +10,7 @@ export default class Instrument extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const { instrument } = this.props;
     return (
       <Grid.Column>
