@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Image, Grid, Header, Icon } from 'semantic-ui-react'
+import { Image, Grid, Header, Icon, Rating } from 'semantic-ui-react'
 
 export default class Instrument extends React.Component {
   componentDidMount() {
@@ -21,9 +21,9 @@ export default class Instrument extends React.Component {
         </Header>
         <Image src={instrument.imageUrl} size="small" rounded bordered centered />
         Price: ${instrument.price}
-        <p>Rating:
-            <Icon name="star" color="grey" />
-        </p>
+        <div>Rating:
+            <Rating icon="star" defaultRating={instrument.rating} maxRating={5} disabled />
+        </div>
       </Grid.Column>
     )
   }
