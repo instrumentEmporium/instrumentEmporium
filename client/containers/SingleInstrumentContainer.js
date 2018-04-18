@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 
 import SingleInstrument from '../components/SingleInstrument';
-import { fetchOneInstrument } from '../store';
+import { fetchSingleInstrument } from '../store';
 
 const mapStateToProps = (storeState, ownProps) => ({
-    instrument: storeState.instruments.find(instrument => +ownProps.match.params.id === +instrument.id)
+    singleInstrument: storeState.singleInstrument
   });
   
   const mapDispatchToProps = (dispatch, ownProps) => ({
     loadInstrument: () => {
-      console.log(ownProps.match.params.id);
-      const action = fetchOneInstrument(ownProps.match.params.id);
+      const action = fetchSingleInstrument(+(ownProps.match.params.id));
       return dispatch(action);
     }
   });
