@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Instrument } = require('../db/models');
-
+const { Review } = require('../db/models');
 
 router.get('/', (req, res, next) => {
   Instrument.findAll({})
