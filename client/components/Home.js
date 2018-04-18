@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import SingleInstrument from './SingleInstrument';
 import { Icon, Button, Container, Header, Image } from 'semantic-ui-react';
-import Carousel from 'react-responsive-carousel';
 import Instrument from './Instrument';
 
 
