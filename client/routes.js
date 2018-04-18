@@ -7,7 +7,6 @@ import {me} from './store';
 import InstrumentListContainer from './containers/InstrumentListContainer';
 import SingleInstrumentContainer from './containers/SingleInstrumentContainer';
 import HomeContainer from './containers/HomeContainer';
-import CartContainer from './containers/CartContainer';
 
 /**
  * COMPONENT
@@ -28,7 +27,6 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/instruments" component={InstrumentListContainer} />
         <Route exact path="/instruments/:id" component={SingleInstrumentContainer} />
-        <Route exact path="/cart" component={CartContainer} />
         {
           isLoggedIn &&
             <Switch>
