@@ -52,6 +52,6 @@ const Instrument = db.define('instrument', {
       max: 5
     }
   }
-})
+});
 
-module.exports = Instrument
+module.exports = Instrument;
