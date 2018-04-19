@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Sequelize = require('sequelize');
 const { Instrument } = require('../db/models');
 const { Review } = require('../db/models');
 
@@ -15,9 +16,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/top-five', (req, res, next) => {
-  Instrument.findAll()
-  .then( instruments => {
-    return Instrument.getTopRating(instruments)
+  Instrument.findAll({
+    order: [['rating', 'DESC']],
+    limit: 5
   })
   .then(topFive => res.json(topFive))
   .catch(next);
