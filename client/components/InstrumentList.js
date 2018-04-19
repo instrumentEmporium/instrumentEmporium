@@ -10,6 +10,7 @@ export default class InstrumentList extends React.Component {
       input: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -22,8 +23,17 @@ export default class InstrumentList extends React.Component {
     });
   }
 
+  handleClick(event) {
+    this.setState({
+      categoryInput: event.target.value
+    })
+  }
+
   render() {
-    const instruments = this.props.instruments.filter(instrument => instrument.name.match(this.state.input));
+    let instruments = this.props.instruments.filter(instrument => {
+      if (this.state.categoryInput) return instrument.type.match(this.state.categoryInput)
+      else return instrument.name.match(this.state.input)
+    })
 
     return (
       <React.Fragment>
@@ -31,13 +41,23 @@ export default class InstrumentList extends React.Component {
         <div style={{ 
           marginLeft: '26em',
           marginBottom: '2em',
-          textAlign: 'left' 
+          textAlign: 'left',
+          display: 'inline-flex'
           }}>
           <form>
             <input
               placeholder='Search For Instrument'
               onChange={this.handleChange}
             />
+          </form>
+          <form style={{ margin: '0em 8em'}}>
+            <span>Search By Category </span>
+            <button value={''} onClick={this.handleClick}>All Instruments</button>
+            <button value={'Keyboard'} onClick={this.handleClick}>Keyboard</button>
+            <button value={'String'} onClick={this.handleClick}>String</button>
+            <button value={'Woodwind'} onClick={this.handleClick}>Woodwind</button>
+            <button value={'Percussion'} onClick={this.handleClick}>Percussion</button>
+            <button value={'Brass'} onClick={this.handleClick}>Brass</button>
           </form>
         </div>
         <Container textAlign='center'>
