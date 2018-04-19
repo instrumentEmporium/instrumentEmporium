@@ -16,8 +16,8 @@ const Review = require('./review');
  */
 User.hasMany(Review, { onDelete: 'cascade', hooks: true });
 Instrument.hasMany(Review, { onDelete: 'cascade', hooks: true });
-Review.belongsTo(User, { onDelete: 'cascade', hooks: true });
-Review.belongsTo(Instrument, { onDelete: 'cascade', hooks: true });
+Review.belongsTo(User);
+Review.belongsTo(Instrument);
 
 module.exports = {
   User,
