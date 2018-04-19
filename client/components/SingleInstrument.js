@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, Image, Grid, Icon } from 'semantic-ui-react';
+import { Dropdown, Image, Grid, Icon, Button } from 'semantic-ui-react';
 
 const options = [
     { key: 1, text: "1", value: 1 },
@@ -25,11 +25,18 @@ export default class SingleInstrument extends React.Component {
         const { singleInstrument } = this.props;
         return (
             <div>
-                <Link to={'/instruments'}><h4>Back to all instruments</h4></Link>  {/* link to previous page, history or something */}
-                <Grid>
-                    <Grid.Column width={1}>
-                    </Grid.Column>
-                    <Grid.Column width={12}>
+                <Button
+                    as={Link}
+                    to={'/instruments'}
+                    style={{
+                        marginLeft: '4em',
+                        marginTop: '2em'
+                    }}>
+                    <Icon name='left arrow' />Back to all instruments
+                </Button>
+                <Grid style={{
+                    margin: '2em'
+                }}>
                     <Grid celled>
                         <Grid.Column width={3}>
                             <Image src={singleInstrument && singleInstrument.imageUrl} />
@@ -47,14 +54,11 @@ export default class SingleInstrument extends React.Component {
                             <Grid.Row>
                                 <h3>Quantity:
                         <Dropdown compact selection defaultValue={1} options={options} />
-                        <Icon name="add to cart" size="large" color="teal" />
+                                    <Icon name="add to cart" size="large" color="teal" />
                                 </h3>
                             </Grid.Row>
                         </Grid.Column>
                     </Grid>
-                    </Grid.Column>
-                    <Grid.Column width={1}>
-                    </Grid.Column>
                 </Grid>
             </div>
         )

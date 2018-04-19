@@ -16,7 +16,7 @@ export default class InstrumentList extends React.Component {
     this.props.loadInstruments();
   }
 
-  handleChange (event) {
+  handleChange(event) {
     this.setState({
       input: event.target.value
     });
@@ -24,18 +24,22 @@ export default class InstrumentList extends React.Component {
 
   render() {
     const instruments = this.props.instruments.filter(instrument => instrument.name.match(this.state.input));
-    
+
     return (
       <React.Fragment>
         <Header as='h1' textAlign='center'>Instruments For Sale</Header>
-
-        <form style={{margin: '20px'}}>
+        <div style={{ 
+          marginLeft: '26em',
+          marginBottom: '2em',
+          textAlign: 'left' 
+          }}>
+          <form>
             <input
-            placeholder="Search For Instrument"   
-            onChange={this.handleChange}
+              placeholder='Search For Instrument'
+              onChange={this.handleChange}
             />
-        </form>
-
+          </form>
+        </div>
         <Container textAlign='center'>
           <Grid columns={4} >
             {Array.isArray(instruments) && instruments.map(instrument => (
