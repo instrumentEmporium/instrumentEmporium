@@ -6,22 +6,19 @@ import user from './reducers/user';
 import instruments from './reducers/instruments';
 import topFive from './reducers/topFive';
 import singleInstrument from './reducers/singleInstrument';
-import { cartReducer, setCartCurrency } from 'react-shopping-cart';
+import cart from './reducers/cart';
 
-export const reducer = combineReducers({user, instruments, topFive, singleInstrument, cartReducer})
+export const reducer = combineReducers({user, instruments, topFive, singleInstrument, cart})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
 ));
 const store = createStore(reducer, middleware);
 
-store.dispatch(
-  setCartCurrency('USD'),
-);
-
 export default store;
 export * from './reducers/user';
 export * from './reducers/instruments';
 export * from './reducers/topFive';
 export * from './reducers/singleInstrument';
+export * from './reducers/cart';
 
