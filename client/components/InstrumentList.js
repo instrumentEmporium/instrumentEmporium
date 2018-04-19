@@ -42,7 +42,6 @@ export default class InstrumentList extends React.Component {
           marginLeft: '26em',
           marginBottom: '2em',
           textAlign: 'left',
-          display: 'inline-flex'
           }}>
           <form>
             <input
@@ -50,15 +49,13 @@ export default class InstrumentList extends React.Component {
               onChange={this.handleChange}
             />
           </form>
-          <form style={{ margin: '0em 8em'}}>
-            <span>Search By Category </span>
-            <button value={''} onClick={this.handleClick}>All Instruments</button>
-            <button value={'Keyboard'} onClick={this.handleClick}>Keyboard</button>
-            <button value={'String'} onClick={this.handleClick}>String</button>
-            <button value={'Woodwind'} onClick={this.handleClick}>Woodwind</button>
-            <button value={'Percussion'} onClick={this.handleClick}>Percussion</button>
-            <button value={'Brass'} onClick={this.handleClick}>Brass</button>
-          </form>
+          <span>Search By Category </span>
+          <button value={''} onClick={this.handleClick}>All Instruments</button>
+          <button value={'Keyboard'} onClick={this.handleClick}>Keyboard</button>
+          <button value={'String'} onClick={this.handleClick}>String</button>
+          <button value={'Woodwind'} onClick={this.handleClick}>Woodwind</button>
+          <button value={'Percussion'} onClick={this.handleClick}>Percussion</button>
+          <button value={'Brass'} onClick={this.handleClick}>Brass</button>
         </div>
         <Container textAlign='center'>
           <Grid columns={4} >
