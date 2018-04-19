@@ -10,6 +10,7 @@ export default class InstrumentList extends React.Component {
       input: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -22,8 +23,14 @@ export default class InstrumentList extends React.Component {
     });
   }
 
+  handleClick(event) {
+    this.setState({
+      input: event.target.value
+    })
+    instruments = this.props.instruments.filter(instrument => instrument.type.match(this.state.input))
+  }
   render() {
-    const instruments = this.props.instruments.filter(instrument => instrument.name.match(this.state.input));
+    let instruments = this.props.instruments.filter(instrument => instrument.name.match(this.state.input))
 
     return (
       <React.Fragment>
@@ -39,6 +46,12 @@ export default class InstrumentList extends React.Component {
               onChange={this.handleChange}
             />
           </form>
+            <button value={''} onClick={this.handleClick}>All Instruments</button>
+            <button value={'Keyboard'} onClick={this.handleClick}>Keyboard</button>
+            <button value={'String'} onClick={this.handleClick}>String</button>
+            <button value={'Woodwind'} onClick={this.handleClick}>Woodwind</button>
+            <button value={'Percussion'} onClick={this.handleClick}>Percussion</button>
+            <button value={'Brass'} onClick={this.handleClick}>Brass</button>
         </div>
         <Container textAlign='center'>
           <Grid columns={4} >
