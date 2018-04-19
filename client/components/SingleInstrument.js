@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, Image, Grid, Icon, Button } from 'semantic-ui-react';
+import { Dropdown, Image, Grid, Icon, Button, Rating } from 'semantic-ui-react';
 
 const options = [
     { key: 1, text: "1", value: 1 },
@@ -21,7 +21,6 @@ export default class SingleInstrument extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const { singleInstrument } = this.props;
         return (
             <div>
@@ -32,7 +31,7 @@ export default class SingleInstrument extends React.Component {
                         marginLeft: '4em',
                         marginTop: '2em'
                     }}>
-                    <Icon name='left arrow' />Back to all instruments
+                    <Icon name="left arrow" />Back to all instruments
                 </Button>
                 <Grid style={{
                     margin: '2em'
@@ -46,15 +45,17 @@ export default class SingleInstrument extends React.Component {
                                 <h3>Name: {singleInstrument && singleInstrument.name}</h3>
                             </Grid.Row>
                             <Grid.Row>
-                                <h3>Price: {singleInstrument && singleInstrument.price}</h3>
+                                <h3>Price: ${singleInstrument && singleInstrument.price}</h3>
                             </Grid.Row>
                             <Grid.Row>
-                                <h3>Rating: {singleInstrument && singleInstrument.rating} </h3>
+                                <h3>Rating: {singleInstrument.rating}
+                                  <Rating icon="star" maxRating={5} rating={singleInstrument.rating} disabled />
+                                </h3>
                             </Grid.Row>
                             <Grid.Row>
                                 <h3>Quantity:
-                        <Dropdown compact selection defaultValue={1} options={options} />
-                                    <Icon name="add to cart" size="large" color="teal" />
+                                  <Dropdown compact selection defaultValue={1} options={options} />
+                                  <Icon name="add to cart" size="large" color="teal" />
                                 </h3>
                             </Grid.Row>
                         </Grid.Column>

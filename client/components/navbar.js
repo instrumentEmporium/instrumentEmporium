@@ -20,13 +20,15 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
           <Menu inverted>
             {/* The navbar will show these links before you log in */}
-            <Menu.Item as={Link} to="/" name='Home' />
-            <Menu.Item as={Link} to="/instruments" name='Instruments' />
-            <Menu.Item as={Link} to="/login" name='Login' style={{ left: '75%' }} />
-            <Menu.Item as={Link} to="/signup" name='Signup' style={{ left: '75%' }} />
-            <Menu.Item as={Link} to="/cart" style={{ left: '75%' }}>
-              <Icon name="cart" size="large" color="teal" />
-            </Menu.Item>
+            <Menu.Item as={Link} to="/" name="Home" />
+            <Menu.Item as={Link} to="/instruments" name="Instruments" />
+            <Menu.Menu position="right">
+              <Menu.Item as={Link} to="/login" name="Login" />
+              <Menu.Item as={Link} to="/signup" name="Signup" />
+              <Menu.Item as={Link} to="/cart">
+                <Icon name="cart" size="large" color="teal" />
+              </Menu.Item>
+            </Menu.Menu>
           </Menu>
         )}
     </Segment>
