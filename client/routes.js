@@ -8,6 +8,7 @@ import InstrumentListContainer from './containers/InstrumentListContainer';
 import SingleInstrumentContainer from './containers/SingleInstrumentContainer';
 import HomeContainer from './containers/HomeContainer';
 import Cart from './components/Cart'
+import EditAccount from './components/EditAccount';
 
 /**
  * COMPONENT
@@ -34,6 +35,7 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/myAccount" component={UserHome} />
+              <Route path="/editAccount" component={EditAccount} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
