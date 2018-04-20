@@ -81,12 +81,3 @@ export default class InstrumentList extends React.Component {
     )
   }
 }
-
-
-// <span>Search By Category </span>
-// <button value={''} onClick={this.handleClick}>All Instruments</button>
-// <button value={'Keyboard'} onClick={this.handleClick}>Keyboard</button>
-// <button value={'String'} onClick={this.handleClick}>String</button>
-// <button value={'Woodwind'} onClick={this.handleClick}>Woodwind</button>
-// <button value={'Percussion'} onClick={this.handleClick}>Percussion</button>
-// <button value={'Brass'} onClick={this.handleClick}>Brass</button>
