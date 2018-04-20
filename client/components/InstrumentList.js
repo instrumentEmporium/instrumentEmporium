@@ -1,6 +1,6 @@
 import React from 'react';
 import Instrument from './Instrument';
-import { Grid, Container, Header } from 'semantic-ui-react';
+import { Grid, Container, Header, Menu, Input, Segment } from 'semantic-ui-react';
 
 export default class InstrumentList extends React.Component {
 
@@ -23,13 +23,14 @@ export default class InstrumentList extends React.Component {
     });
   }
 
-  handleClick(event) {
+  handleClick(event, { name }) {
     this.setState({
-      categoryInput: event.target.value
+      categoryInput: name
     })
   }
 
   render() {
+    const { categoryInput } = this.state;
     let instruments = this.props.instruments.filter(instrument => {
       if (this.state.categoryInput) return instrument.type.match(this.state.categoryInput)
       else return instrument.name.match(this.state.input)
@@ -37,36 +38,45 @@ export default class InstrumentList extends React.Component {
 
     return (
       <React.Fragment>
-        <Header as='h1' textAlign='center'>Instruments For Sale</Header>
-        <div style={{ 
-          marginLeft: '26em',
-          marginBottom: '2em',
-          textAlign: 'left',
-          }}>
-          <form>
-            <input
-              placeholder='Search For Instrument'
-              onChange={this.handleChange}
-            />
-          </form>
-          <span>Search By Category </span>
-          <button value={''} onClick={this.handleClick}>All Instruments</button>
-          <button value={'Keyboard'} onClick={this.handleClick}>Keyboard</button>
-          <button value={'String'} onClick={this.handleClick}>String</button>
-          <button value={'Woodwind'} onClick={this.handleClick}>Woodwind</button>
-          <button value={'Percussion'} onClick={this.handleClick}>Percussion</button>
-          <button value={'Brass'} onClick={this.handleClick}>Brass</button>
-        </div>
-        <Container textAlign='center'>
-          <Grid columns={4} >
-            {Array.isArray(instruments) && instruments.map(instrument => (
-              <Grid.Column key={instrument.id}>
-                <Instrument instrument={instrument} key={instrument.id} />
-              </Grid.Column>
-            )
-            )}
-          </Grid>
-        </Container>
+        <Header as="h1" textAlign="left" style={{marginLeft: '17px'}}>Instruments For Sale</Header>
+        <Grid columns="equal" padded>
+          <Grid.Column width={3}>
+            <Menu vertical>
+              <Menu.Item name="" active={categoryInput === ''} onClick={this.handleClick}>
+                All Instruments
+              </Menu.Item>
+              <Menu.Item name="Keyboard" active={categoryInput === 'Keyboard'} onClick={this.handleClick}>Keyboard
+              </Menu.Item>
+              <Menu.Item name="String" active={categoryInput === 'String'} onClick={this.handleClick}>
+                String
+              </Menu.Item>
+              <Menu.Item name="Woodwind" active={categoryInput === 'Woodwind'} onClick={this.handleClick}>
+                Woodwind
+              </Menu.Item>
+              <Menu.Item name="Percussion" active={categoryInput === 'Percussion'} onClick={this.handleClick}>
+                Percussion
+              </Menu.Item>
+              <Menu.Item name="Brass" active={categoryInput === 'Brass'} onClick={this.handleClick}>
+                Brass
+              </Menu.Item>
+              <Menu.Item>
+                <Input icon="search" placeholder="Search instruments" onChange={this.handleChange} />
+              </Menu.Item>
+            </Menu>
+          </Grid.Column>
+          <Grid.Column >
+            <Container textAlign="center">
+              <Grid columns={4} >
+                {Array.isArray(instruments) && instruments.map(instrument => (
+                  <Grid.Column key={instrument.id}>
+                    <Instrument instrument={instrument} key={instrument.id} />
+                  </Grid.Column>
+                )
+                )}
+              </Grid>
+            </Container>
+          </Grid.Column>
+        </Grid>
       </React.Fragment>
     )
   }
