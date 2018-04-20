@@ -25,7 +25,7 @@ export default class Home extends React.Component {
             </Button>
           </div>
           <img className="carousel-image"
-            src="https://upload.wikimedia.org/wikipedia/commons/8/87/Steinway_grand_piano_strings_and_keys.JPG" />
+            src="/images/background.jpg" />
           <img className="carousel-image hidden" src="http://www.schantzorgan.com/data1/images/schantzorganslide02.jpg" />
         </section>
         <Grid textAlign='center'>
