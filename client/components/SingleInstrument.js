@@ -21,6 +21,7 @@ export default class SingleInstrument extends React.Component {
     }
 
     render() {
+        console.log(this.props, 'this.props')
         const { singleInstrument } = this.props;
         return (
             <div>
@@ -61,6 +62,31 @@ export default class SingleInstrument extends React.Component {
                         </Grid.Column>
                     </Grid>
                 </Grid>
+                {
+                    singleInstrument.reviews && singleInstrument.reviews.map(review => {
+                        return (
+                            <Grid style={{
+                                margin: '2em'
+                            }}>
+                                <Grid celled>
+                                    <Grid.Column width={3}>
+                                        <Image src={singleInstrument.imageUrl} />
+                                    </Grid.Column>
+                                    <Grid.Column width={8}>
+                                        <Grid.Row>
+                                            <h3>Name: {singleInstrument.name}</h3>
+                                        </Grid.Row>
+                                        <Grid.Row>
+                                            <h3>Rating: {singleInstrument.rating}
+                                              <Rating icon="star" maxRating={5} rating={singleInstrument.rating} disabled />
+                                            </h3>
+                                        </Grid.Row>
+                                    </Grid.Column>
+                                </Grid>
+                            </Grid>
+                        )
+                    })
+                }
             </div>
         )
     }
