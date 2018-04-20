@@ -49,7 +49,7 @@ export default class SingleInstrument extends React.Component {
                                 <h3>Price: ${singleInstrument && singleInstrument.price}</h3>
                             </Grid.Row>
                             <Grid.Row>
-                                <h3>Rating: {singleInstrument.rating}
+                                <h3>Rating: 
                                   <Rating icon="star" maxRating={5} rating={singleInstrument.rating} disabled />
                                 </h3>
                             </Grid.Row>
@@ -69,17 +69,13 @@ export default class SingleInstrument extends React.Component {
                                 margin: '2em'
                             }}>
                                 <Grid celled>
-                                    <Grid.Column width={3}>
-                                        <Image src={singleInstrument.imageUrl} />
+                                    <Grid.Column width={4}>
+                                        <h3>Name: {review.user.email}</h3>  {/* Set this value to fullname after a getter for*/}
                                     </Grid.Column>
-                                    <Grid.Column width={8}>
+                                    <Grid.Column width={6}>
                                         <Grid.Row>
-                                            <h3>Name: {singleInstrument.name}</h3>
-                                        </Grid.Row>
-                                        <Grid.Row>
-                                            <h3>Rating: {singleInstrument.rating}
-                                              <Rating icon="star" maxRating={5} rating={singleInstrument.rating} disabled />
-                                            </h3>
+                                            <h3>Name: {singleInstrument && singleInstrument.name}</h3>
+                                            <h3>Rating: <Rating icon="star" maxRating={5} rating={review.rating} disabled /></h3>
                                         </Grid.Row>
                                     </Grid.Column>
                                 </Grid>
@@ -91,7 +87,3 @@ export default class SingleInstrument extends React.Component {
         )
     }
 }
-
-/*
-
-*/
