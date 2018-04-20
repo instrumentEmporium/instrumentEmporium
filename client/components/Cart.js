@@ -25,7 +25,7 @@ export default class Instrument extends React.Component {
                                 Take me back to the shop!
                             </Button>
                         </div>
-                        {/* Take array of cart items and maps them out as grid rows with price, quantity. 
+                        {/* Take array of cart items and map them out as grid rows with price, quantity. 
                         Use ternary to display either items in cart or empty cart message */}
                     </Grid.Row>
                 </Grid>
