@@ -28,26 +28,10 @@ export default class Home extends React.Component {
             src="https://upload.wikimedia.org/wikipedia/commons/8/87/Steinway_grand_piano_strings_and_keys.JPG" />
           <img className="carousel-image hidden" src="http://www.schantzorgan.com/data1/images/schantzorganslide02.jpg" />
         </section>
-        {/* <Container
-          className='homeLanding'
-          style={{
-            marginBottom: '100px',
-            width: '100%'
-          }}
-          text textAlign="center">
-          <Header
-            as='h1'
-            content="Welcome to the Instrument Emporium!"
-            style={{
-              fontSize: '3em',
-              fontWeight: 'normal',
-              color: 'white',
-              marginBottom: '100px',
-            }}
-          >
-          </Header>
-        </Container> */}
         <Grid textAlign='center'>
+          <Grid.Row>
+            <h1>Top Rated Products</h1>
+          </Grid.Row>
           {
             topFive && topFive.map(instrument => {
               return (
