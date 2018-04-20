@@ -20,8 +20,32 @@ form div {
   display: inline-block;
 }
 
-.homeLanding {
-  background-image: url('./background.jpg');
-  width: 100%; 
+#carousel {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#carousel #carousel-text {
+  position: absolute;
+  top: 45vh;
+  color: #fff;
+  text-shadow: 2px 2px #252525;
+  z-index: 1;
+  text-align: center;
+}
+
+#carousel .carousel-image {
+  position: absolute;
+  display: block;
+  margin: auto;
+  min-width: 100%;
+  height: 95%;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+#carousel .carousel-image.hidden {
+  opacity: 0;
 }
 

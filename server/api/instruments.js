@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Sequelize = require('sequelize');
 const { Instrument } = require('../db/models');
 const { Review } = require('../db/models');
+const { User } = require('../db/models');
 
 router.get('/', (req, res, next) => {
   Instrument.findAll({})
@@ -30,7 +31,8 @@ router.get('/:id', (req, res, next) => {
       id: +req.params.id
     },
     include: {
-      model: Review
+      model: Review,
+      include: [User]
     }
   })
   .then(instrument => res.json(instrument))
