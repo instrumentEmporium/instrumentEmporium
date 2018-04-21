@@ -5,7 +5,7 @@ const { Order } = require('../db/models');
 router.get('/', (req, res, next) => {
   let userId;
   let foundOrder;
-  if (req.user.id) {
+  if (req.user) {
     userId = req.user.id;
     foundOrder = Order.findOne({
       where: {

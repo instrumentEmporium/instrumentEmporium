@@ -21,7 +21,6 @@ export default class SingleInstrument extends React.Component {
     }
 
     render() {
-        console.log(this.props, 'this.props')
         const { singleInstrument } = this.props;
         return (
             <div>
@@ -49,7 +48,7 @@ export default class SingleInstrument extends React.Component {
                                 <h3>Price: ${singleInstrument && singleInstrument.price}</h3>
                             </Grid.Row>
                             <Grid.Row>
-                                <h3>Rating: 
+                                <h3>Rating:
                                   <Rating icon="star" maxRating={5} rating={singleInstrument.rating} disabled />
                                 </h3>
                             </Grid.Row>
