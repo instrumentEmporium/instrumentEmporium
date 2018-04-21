@@ -8,8 +8,7 @@ const options = [
     { key: 3, text: "3", value: 3 },
     { key: 4, text: "4", value: 4 },
     { key: 5, text: "5", value: 5 }
-]
-//
+];
 
 export default class SingleInstrument extends React.Component {
 
@@ -73,7 +72,7 @@ export default class SingleInstrument extends React.Component {
                                     </Grid.Column>
                                     <Grid.Column width={6}>
                                         <Grid.Row>
-                                            <h3>Name: {singleInstrument && singleInstrument.name}</h3>
+                                            <h3>{review.description}</h3>
                                             <h3>Rating: <Rating icon="star" maxRating={5} rating={review.rating} disabled /></h3>
                                         </Grid.Row>
                                     </Grid.Column>
