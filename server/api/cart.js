@@ -1,24 +1,20 @@
 const router = require('express').Router();
-const Sequelize = require('sequelize');
 const { Order } = require('../db/models');
 
 router.get('/', (req, res, next) => {
-  let userId;
   let foundOrder;
   if (req.user) {
-    userId = req.user.id;
     foundOrder = Order.findOne({
       where: {
         fulfilled: false,
-        userId: userId
+        userId: req.user.id
       }
     });
   } else {
-    userId = req.session.id;
     foundOrder = Order.findOne({
       where: {
         fulfilled: false,
-        sessionId: userId
+        sessionId: req.session.id
       }
     })
   }
@@ -30,6 +26,19 @@ router.get('/', (req, res, next) => {
       res.sendStatus(404);
     }
   })
+  .catch(next);
+})
+
+router.post('/', (req, res, next) => {
+  let userId = req.user ? req.user.id : null;
+  let sessionId = req.session.id;
+  Order.create({
+      fulfilled: false,
+      userId: userId,
+      sessionId: sessionId,
+      items: [req.body]
+  })
+  .then(cart => res.status(201).json(cart))
   .catch(next);
 })
 

@@ -5,6 +5,7 @@ const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const GET_CART = 'GET_CART';
 const CLEAR_CART = 'CLEAR_CART';
+const CREATE_CART = 'CREATE_CART';
 
 //ACTION CREATORS
 export const addToCart = item => ({
@@ -20,12 +21,17 @@ export const removeFromCart = item => ({
 export const getCart = cart => ({
   type: GET_CART,
   cart
+});
+
+export const createCart = cart => ({
+  type: CREATE_CART,
+  cart
 })
 
 export const clearCart = cart => ({
   type: CLEAR_CART,
   cart
-})
+});
 
 //THUNK CREATORS
 export const fetchCart = () => {
@@ -36,9 +42,49 @@ export const fetchCart = () => {
       .then(cart => {
         const action = getCart(cart);
         dispatch(action);
-      });
+      })
+      .catch(err => console.error(err));
   };
 };
+
+export const postCart = item => {
+  return dispatch => {
+    return axios
+      .post(`/api/cart`, item)
+      .then(res => res.data)
+      .then(newCart => {
+        const action = createCart(newCart);
+        dispatch(action);
+      })
+      .catch(err => console.error(err));
+  };
+};
+
+export const putAddToCart = itemToAdd => {
+  return dispatch => {
+    return axios
+      .put(`/api/cart/add`, itemToAdd)
+      .then(res => res.data)
+      .then(cart => {
+        const action = addToCart(cart);
+        dispatch(action);
+      })
+      .catch(err => console.error(err));
+  }
+}
+
+export const putRemoveFromCart = itemToRemove => {
+  return dispatch => {
+    return axios
+      .put(`/api/cart/remove`, itemToRemove)
+      .then(res => res.data)
+      .then(cart => {
+        const action = removeFromCart(cart);
+        dispatch(action);
+      })
+      .catch(err => console.error(err));
+  }
+}
 
 //REDUCER
 export default function cartReducer(state = [], action) {
@@ -51,6 +97,8 @@ export default function cartReducer(state = [], action) {
       return action.cart;
     case CLEAR_CART:
       return [];
+    case CREATE_CART:
+      return action.cart;
     default:
       return state;
   }
