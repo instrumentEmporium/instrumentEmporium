@@ -3,18 +3,10 @@ const db = require('../db');
 
 const Order = db.define('order', {
   items: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-    allowNull: false
-  },
-  orderTotal: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0
-    }
+    type: Sequelize.ARRAY(Sequelize.JSONB),
   },
   sessionId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
   },
   fulfilled: {
