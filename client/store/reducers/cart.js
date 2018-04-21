@@ -17,13 +17,28 @@ export const removeFromCart = item => ({
   item
 });
 
-export const getCart = () => ({
-  type: GET_CART
+export const getCart = cart => ({
+  type: GET_CART,
+  cart
 })
 
-export const clearCart = () => ({
-  type: CLEAR_CART
+export const clearCart = cart => ({
+  type: CLEAR_CART,
+  cart
 })
+
+//THUNK CREATORS
+export const fetchCart = () => {
+  return dispatch => {
+    return axios
+      .get(`/api/cart`)
+      .then(res => res.data)
+      .then(cart => {
+        const action = getCart(cart);
+        dispatch(action);
+      });
+  };
+};
 
 //REDUCER
 export default function cartReducer(state = [], action) {
@@ -32,6 +47,10 @@ export default function cartReducer(state = [], action) {
       return [...state, action.item];
     case REMOVE_FROM_CART:
       return state.filter(item => item.id !== action.item.id);
+    case GET_CART:
+      return action.cart;
+    case CLEAR_CART:
+      return [];
     default:
       return state;
   }
