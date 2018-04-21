@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import { Menu, Segment, Icon } from 'semantic-ui-react';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, admin }) => (
   <div>
 
     <Segment inverted>
@@ -15,6 +15,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Menu inverted>
           <Menu.Item as={Link} to="/" name="Home" />
           <Menu.Item as={Link} to="/instruments" name="Instruments" />
+          {admin ? <Menu.Item as={Link} to="/admin-dash" name="Admin" /> : null}
           <Menu.Menu position="right">
             <Menu.Item as={Link} to="/cart">
             <Icon name="cart" size="large" color="teal" />
@@ -48,7 +49,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    admin: state.user.admin
   }
 }
 
@@ -67,5 +69,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  admin: PropTypes.bool
 }
