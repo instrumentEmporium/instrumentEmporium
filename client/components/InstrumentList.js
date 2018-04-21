@@ -41,7 +41,7 @@ export default class InstrumentList extends React.Component {
         <Header as="h1" textAlign="left" style={{marginLeft: '17px'}}>Instruments For Sale</Header>
         <Grid columns="equal" padded>
           <Grid.Column width={3}>
-            <Menu vertical>
+            <Menu vertical id="sidebar">
               <Menu.Item name="" active={categoryInput === ''} onClick={this.handleClick}>
                 All Instruments
               </Menu.Item>
