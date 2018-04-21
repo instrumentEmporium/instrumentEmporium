@@ -6,6 +6,13 @@ import Instrument from './Instrument';
 
 
 export default class Home extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      index: 1
+    }
+  }
+
   componentDidMount() {
     if (this.props.loadTopFive) {
       this.props.loadTopFive();
@@ -14,6 +21,8 @@ export default class Home extends React.Component {
 
   render() {
     const { topFive } = this.props;
+    let index=this.state.index;
+    console.log(index)
     return (
       <div >
         <section id="carousel">
@@ -24,9 +33,9 @@ export default class Home extends React.Component {
               <Icon name='right arrow' />
             </Button>
           </div>
-          <img className="carousel-image"
-            src="/images/background.jpg" />
-          <img className="carousel-image hidden" src="http://www.schantzorgan.com/data1/images/schantzorganslide02.jpg" />
+          <img className='carousel-image' src="/images/background" />
+          <img className={`carousel-image ${(index%3 === 2) ? '' : 'hidden'}`} src="/images/background2" />
+          <img className={`carousel-image ${(index%3 === 0) ? '' : 'hidden'}`} src='/images/background3' />
         </section>
         <Grid textAlign='center'>
           <Grid.Row>
