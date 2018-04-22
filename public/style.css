@@ -41,7 +41,6 @@ form div {
   margin: auto;
   min-width: 100%;
   height: 95%;
-  min-height: 80%;
   opacity: 1;
   transition: opacity 1s;
 }

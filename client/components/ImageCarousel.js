@@ -14,7 +14,6 @@ export default class Carousel extends React.Component {
     componentDidMount() {
         let intervalId = setInterval(() => {
             this.setState({ index: this.state.index + 1 })
-            console.log(this.state.index)
         }, 5000);
         this.setState({intervalId:intervalId})
     }
@@ -34,7 +33,7 @@ export default class Carousel extends React.Component {
                         <Icon name='right arrow' />
                         </Button>
                     </div>
-                    <Image className={(this.state.index % 3 === 1) ? "carousel-image" : "carousel-image hidden"} src="/images/background1.jpg" />
+                    <Image className={(this.state.index%3 === 1) ? "carousel-image" : "carousel-image hidden"} src="/images/background1.jpg" />
                     <Image className={(this.state.index%3 === 2) ? "carousel-image" : "carousel-image hidden"} src="/images/background2.jpg" />
                     <Image className={(this.state.index%3 === 0) ? "carousel-image" : "carousel-image hidden"} src='/images/background3.jpg' />
                 </section>
