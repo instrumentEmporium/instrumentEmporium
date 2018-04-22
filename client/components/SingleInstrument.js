@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Dropdown, Image, Grid, Icon, Button, Rating } from 'semantic-ui-react';
-import { postCart } from '../store';
 
 const options = [
     { key: 1, text: "1", value: 1 },
@@ -9,7 +8,7 @@ const options = [
     { key: 3, text: "3", value: 3 },
     { key: 4, text: "4", value: 4 },
     { key: 5, text: "5", value: 5 }
-];
+]
 
 export default class SingleInstrument extends React.Component {
 
@@ -18,6 +17,7 @@ export default class SingleInstrument extends React.Component {
         if (this.props.loadInstrument) {
             this.props.loadInstrument();
         }
+        this.props.loadCart();
     }
 
     render() {
@@ -59,7 +59,7 @@ export default class SingleInstrument extends React.Component {
                           let currentItem = {
                             id: +singleInstrument.id, price: +singleInstrument.price, quantity: 1
                           }
-                          cart.length ? this.props.addToCart(currentItem) : this.props.createCart(currentItem)}}>
+                          cart.items && cart.items.length ? this.props.addToCart(cart.id, currentItem, cart.items) : this.props.createCart(currentItem)}}>
                           <Icon name="add to cart" size="large" color="teal" />
                         </Button>
                       </h3>

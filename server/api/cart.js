@@ -1,38 +1,12 @@
 const router = require('express').Router();
 const { Order } = require('../db/models');
 
-router.put('/add', (req, res, next) => {
-  let userId = req.user ? req.user.id : null;
-  let sessionId = req.session.id;
-  if (req.user) {
-    Order.update({
-      userId: userId,
-      sessionId: sessionId,
-      items: [req.body]
-    }, {
-        where: {
-          fulfilled: false,
-          userId: req.user.id
-        }
-      }
-    )
-      .then(cart => res.status(200).json(cart))
-      .catch(next);
-  } else {
-    Order.update({
-      userId: userId,
-      sessionId: sessionId,
-      items: [req.body]
-    }, {
-        where: {
-          fulfilled: false,
-          sessionId: req.session.id
-        }
-      }
-    )
-      .then(cart => res.status(200).json(cart))
-      .catch(next);
-  }
+router.put(`/`, (req, res, next) => {
+  Order.findById(req.body.id)
+  .then(order => order.update(req.body))
+  .then(updatedOrder => {
+    res.status(200).json(updatedOrder);
+  })
 })
 
 router.get('/', (req, res, next) => {
@@ -55,7 +29,7 @@ router.get('/', (req, res, next) => {
   foundOrder
     .then(orderObj => {
       if (orderObj) {
-        res.status(200).json(orderObj.items);
+        res.status(200).json(orderObj);
       } else {
         res.sendStatus(404);
       }
