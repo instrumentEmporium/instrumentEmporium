@@ -13,10 +13,6 @@ const mapStateToProps = (storeState, ownProps) => ({
       const action = fetchSingleInstrument(+(ownProps.match.params.id));
       return dispatch(action);
     },
-    // loadCart: () => {
-    //   const action = fetchCart();
-    //   return dispatch(action);
-    // },
     addToCart: (item) => {
       const action = putAddToCart(item);
       return dispatch(action);

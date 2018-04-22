@@ -16,14 +16,14 @@ export default class Cart extends React.Component {
     render() {
       const { cart } = this.props;
         return (
-            <Container id="cart">
-            <Header as="h2" textAlign="center" style={{marginTop: '10px'}}>Your Cart</Header>
-              <Grid>
-                <Grid.Row textAlign="center">
-                  {(cart && cart.length ?
-                    (cart.map(item => {
-                      item = JSON.parse(item);
-                      let singleItem = this.props.instruments.find(instrument => instrument.id === +item.id)
+          <Container id="cart">
+          <Header as="h2" textAlign="center" style={{marginTop: '10px'}}>Your Cart</Header>
+            <Grid>
+              <Grid.Row textAlign="center">
+                {(cart && cart.length ?
+                  (<Container>
+                    {cart.map(item => {
+                    let singleItem = this.props.instruments.find(instrument => instrument.id === +item.id)
                     return (
                       <Grid celled key={item.id}>
                         <Grid.Column width={3}>
@@ -43,10 +43,7 @@ export default class Cart extends React.Component {
                         </Grid.Column>
                       </Grid>
                     )
-                    })) :
-                    <h1>Your shopping cart is empty</h1>
-                  )}
-                    </Grid.Row>
+                  })}
                     <Button.Group widths={5}>
                       <Button as={Link} to="/instruments" color="yellow" size="large">
                       Take me back to the shop
@@ -54,10 +51,18 @@ export default class Cart extends React.Component {
                       <Button.Or />
                       <Button color="teal" size="large">Continue to Checkout</Button>
                     </Button.Group>
-
-                </Grid>
-            </Container>
-
+                  </Container>
+                ) :
+                  <Container>
+                  <h1>Your shopping cart is empty</h1>
+                  <Button as={Link} to="/instruments" color="yellow" size="large">
+                    Take me back to the shop
+                  </Button>
+                  </Container>
+                )}
+                  </Grid.Row>
+              </Grid>
+          </Container>
         )
     }
 }
