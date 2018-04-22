@@ -31,7 +31,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   let userId = req.user ? req.user.id : null;
-  let sessionId = req.session.id;
+  let sessionId = userId ? null : req.session.id;
   Order.create({
       fulfilled: false,
       userId: userId,
