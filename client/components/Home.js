@@ -2,9 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Button, Container, Header, Image, Grid } from 'semantic-ui-react';
 import Instrument from './Instrument';
+import Carousel from './ImageCarousel';
 
 
 export default class Home extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      index: 1
+    }
+  }
+
   componentDidMount() {
     if (this.props.loadTopFive) {
       this.props.loadTopFive();
@@ -15,18 +23,7 @@ export default class Home extends React.Component {
     const { topFive } = this.props;
     return (
       <div >
-        <section id="carousel">
-          <div id="carousel-text">
-            <h1>Welcome to the Instrument Emporium!</h1>
-            <Button as={Link} to="/instruments" color="yellow" size="huge">
-              Explore our products
-              <Icon name='right arrow' />
-            </Button>
-          </div>
-          <img className="carousel-image"
-            src="https://upload.wikimedia.org/wikipedia/commons/8/87/Steinway_grand_piano_strings_and_keys.JPG" />
-          <img className="carousel-image hidden" src="http://www.schantzorgan.com/data1/images/schantzorganslide02.jpg" />
-        </section>
+        <Carousel />
         <Grid textAlign='center'>
           <Grid.Row>
             <h1>Top Rated Products</h1>
