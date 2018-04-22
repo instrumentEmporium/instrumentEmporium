@@ -20,9 +20,9 @@ export default class Cart extends React.Component {
           <Header as="h2" textAlign="center" style={{marginTop: '10px'}}>Your Cart</Header>
             <Grid>
               <Grid.Row textAlign="center">
-                {(cart && cart.length ?
+                {(cart.items && cart.items.length ?
                   (<Container>
-                    {cart.map(item => {
+                    {cart.items.map(item => {
                     let singleItem = this.props.instruments.find(instrument => instrument.id === +item.id)
                     return (
                       <Grid celled key={item.id}>
@@ -40,10 +40,19 @@ export default class Cart extends React.Component {
                             <h3>Quantity:{
                             item.quantity}</h3>
                           </Grid.Row>
+                          <Grid.Row>
+                            <Button animated color="red" size= "small" onClick={() => this.props.removeFromCart(cart.id, singleItem, cart.items)}>
+                              <Button.Content visible>Remove from Cart</Button.Content>
+                              <Button.Content hidden>
+                                <Icon name="remove circle" size="large" />
+                              </Button.Content>
+                            </Button>
+                            </Grid.Row>
                         </Grid.Column>
                       </Grid>
                     )
                   })}
+                    <Header as="h2"> Total:</Header>
                     <Button.Group widths={5}>
                       <Button as={Link} to="/instruments" color="yellow" size="large">
                       Take me back to the shop

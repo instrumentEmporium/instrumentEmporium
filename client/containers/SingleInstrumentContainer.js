@@ -13,8 +13,12 @@ const mapStateToProps = (storeState, ownProps) => ({
       const action = fetchSingleInstrument(+(ownProps.match.params.id));
       return dispatch(action);
     },
-    addToCart: (item) => {
-      const action = putAddToCart(item);
+    loadCart: () => {
+      const action = fetchCart();
+      return dispatch(action);
+    },
+    addToCart: (cartId, itemToAdd, currentCartItems) => {
+      const action = putAddToCart(cartId, itemToAdd, currentCartItems);
       return dispatch(action);
     },
     createCart: (item) => {

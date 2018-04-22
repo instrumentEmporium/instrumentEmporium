@@ -60,10 +60,13 @@ export const postCart = item => {
   };
 };
 
-export const putAddToCart = itemToAdd => {
+export const putAddToCart = (cartId, itemToAdd, currentCartItems) => {
   return dispatch => {
     return axios
-      .put(`/api/cart/add`, itemToAdd)
+      .put(`/api/cart/`, {
+        id: cartId,
+        items: currentCartItems.concat([itemToAdd])
+      })
       .then(res => res.data)
       .then(cart => {
         const action = addToCart(cart);
@@ -73,10 +76,13 @@ export const putAddToCart = itemToAdd => {
   }
 }
 
-export const putRemoveFromCart = itemToRemove => {
+export const putRemoveFromCart = (cartId, itemToRemove, currentCartItems) => {
   return dispatch => {
     return axios
-      .put(`/api/cart/remove`, itemToRemove)
+      .put(`/api/cart`, {
+        id: cartId,
+        items: currentCartItems.filter(item => item.id !== itemToRemove.id)
+      })
       .then(res => res.data)
       .then(cart => {
         const action = removeFromCart(cart);
@@ -87,12 +93,12 @@ export const putRemoveFromCart = itemToRemove => {
 }
 
 //REDUCER
-export default function cartReducer(state = [], action) {
+export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      return [...state, action.item];
+      return state.items.concat([action.item]);
     case REMOVE_FROM_CART:
-      return state.filter(item => item.id !== action.item.id);
+      return state.items.filter(item => item.id !== action.item.id);
     case GET_CART:
       return action.cart;
     case CLEAR_CART:
@@ -103,3 +109,4 @@ export default function cartReducer(state = [], action) {
       return state;
   }
 }
+
