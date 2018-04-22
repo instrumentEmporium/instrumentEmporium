@@ -95,7 +95,7 @@ router.delete('/', (req, res, next) => {
         sessionId: req.session.id
       }
     })
-      .then(cart => res.status(200).json(cart))
+      .then(affectedRows => res.status(204))
       .catch(next);
   }
 })
