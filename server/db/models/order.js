@@ -6,8 +6,7 @@ const Order = db.define('order', {
     type: Sequelize.ARRAY(Sequelize.JSONB),
   },
   sessionId: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   fulfilled: {
     type: Sequelize.BOOLEAN,
