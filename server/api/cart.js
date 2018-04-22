@@ -1,25 +1,35 @@
 const router = require('express').Router();
 const { Order } = require('../db/models');
 
-router.put('', (req, res, next) => {
+router.put('/add', (req, res, next) => {
   let userId = req.user ? req.user.id : null;
   let sessionId = req.session.id;
   if (req.user) {
     Order.update({
-      fulfilled: false,
       userId: userId,
       sessionId: sessionId,
       items: [req.body]
-    })
+    }, {
+        where: {
+          fulfilled: false,
+          userId: req.user.id
+        }
+      }
+    )
       .then(cart => res.status(200).json(cart))
       .catch(next);
   } else {
     Order.update({
-      fulfilled: false,
       userId: userId,
       sessionId: sessionId,
       items: [req.body]
-    })
+    }, {
+        where: {
+          fulfilled: false,
+          sessionId: req.session.id
+        }
+      }
+    )
       .then(cart => res.status(200).json(cart))
       .catch(next);
   }
@@ -65,5 +75,30 @@ router.post('/', (req, res, next) => {
     .then(cart => res.status(201).json(cart))
     .catch(next);
 })
+
+router.delete('/', (req, res, next) => {
+  let userId = req.user ? req.user.id : null;
+  let sessionId = req.session.id;
+  if (req.user) {
+    Order.destroy({
+      where: {
+        fulfilled: false,
+        userId: req.user.id
+      }
+    })
+      .then(affectedRows => res.status(204))
+      .catch(next);
+  } else {
+    Order.destroy({
+      where: {
+        fulfilled: false,
+        sessionId: req.session.id
+      }
+    })
+      .then(cart => res.status(200).json(cart))
+      .catch(next);
+  }
+})
+
 
 module.exports = router;
