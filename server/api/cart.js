@@ -1,6 +1,30 @@
 const router = require('express').Router();
 const { Order } = require('../db/models');
 
+router.put('', (req, res, next) => {
+  let userId = req.user ? req.user.id : null;
+  let sessionId = req.session.id;
+  if (req.user) {
+    Order.update({
+      fulfilled: false,
+      userId: userId,
+      sessionId: sessionId,
+      items: [req.body]
+    })
+      .then(cart => res.status(200).json(cart))
+      .catch(next);
+  } else {
+    Order.update({
+      fulfilled: false,
+      userId: userId,
+      sessionId: sessionId,
+      items: [req.body]
+    })
+      .then(cart => res.status(200).json(cart))
+      .catch(next);
+  }
+})
+
 router.get('/', (req, res, next) => {
   let foundOrder;
   if (req.user) {
@@ -19,27 +43,27 @@ router.get('/', (req, res, next) => {
     })
   }
   foundOrder
-  .then(orderObj => {
-    if (orderObj){
-      res.status(200).json(orderObj.items);
-    } else {
-      res.sendStatus(404);
-    }
-  })
-  .catch(next);
+    .then(orderObj => {
+      if (orderObj) {
+        res.status(200).json(orderObj.items);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch(next);
 })
 
 router.post('/', (req, res, next) => {
   let userId = req.user ? req.user.id : null;
   let sessionId = req.session.id;
   Order.create({
-      fulfilled: false,
-      userId: userId,
-      sessionId: sessionId,
-      items: [req.body]
+    fulfilled: false,
+    userId: userId,
+    sessionId: sessionId,
+    items: [req.body]
   })
-  .then(cart => res.status(201).json(cart))
-  .catch(next);
+    .then(cart => res.status(201).json(cart))
+    .catch(next);
 })
 
 module.exports = router;
