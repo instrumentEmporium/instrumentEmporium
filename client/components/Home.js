@@ -7,7 +7,7 @@ import Carousel from './ImageCarousel';
 
 export default class Home extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       index: 1
     }

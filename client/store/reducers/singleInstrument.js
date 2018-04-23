@@ -48,10 +48,13 @@ export const fetchDeleteInstrument = id => {
 export default function reducer(state = {}, action) {
     switch (action.type) {
         case GET_SINGLE_INSTRUMENT:
+<<<<<<< HEAD
             return action.instrument
         case REMOVE_INSTRUMENT: 
+=======
+>>>>>>> master
             return action.instrument;
         default:
             return state;
     }
-}
+};
