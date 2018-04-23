@@ -5,19 +5,19 @@ import { getCart } from './cart';
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
+const GET_USER = 'GET_USER';
+const REMOVE_USER = 'REMOVE_USER';
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {};
 
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+const getUser = user => ({ type: GET_USER, user });
+const removeUser = () => ({ type: REMOVE_USER });
 
 /**
  * THUNK CREATORS
@@ -27,18 +27,18 @@ export const me = () =>
     axios.get('/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
 
 export const auth = (email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
-        dispatch(getUser(res.data))
-        history.push('/editAccount')
+        dispatch(getUser(res.data));
+        history.push('/editAccount');
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
+        dispatch(getUser({ error: authError }));
       })
-      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const logout = () =>
   dispatch =>
@@ -48,7 +48,7 @@ export const logout = () =>
         dispatch(getCart({}));
         history.push('/');
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
 
 /**
  * REDUCER
@@ -56,10 +56,10 @@ export const logout = () =>
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return action.user;
     case REMOVE_USER:
-      return defaultUser
+      return defaultUser;
     default:
-      return state
+      return state;
   }
-}
+};

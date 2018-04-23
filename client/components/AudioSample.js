@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 const audio = document.createElement('audio');
 
-export default class Cart extends React.Component {
+export default class AudioSample extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,12 +18,12 @@ export default class Cart extends React.Component {
         audio.src = audioUrl;
         audio.load();
         audio.play();
-        this.setState({ audioPlaying: true })
+        this.setState({ audioPlaying: true });
     }
 
     stopAudio() {
         audio.pause();
-        this.setState({ audioPlaying: false })
+        this.setState({ audioPlaying: false });
     }
 
     render() {

@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { logout } from '../store'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
 import { Menu, Segment, Icon } from 'semantic-ui-react';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
@@ -41,7 +41,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     </Segment>
 
   </div>
-)
+);
 
 /**
  * CONTAINER
@@ -50,17 +50,17 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id
   }
-}
+};
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout())
+      dispatch(logout());
     }
   }
-}
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);
 
 /**
  * PROP TYPES
