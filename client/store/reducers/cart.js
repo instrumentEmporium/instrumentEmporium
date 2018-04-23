@@ -12,7 +12,7 @@ export const addToCart = item => ({
   type: ADD_TO_CART,
   item
 });
-
+//the entire new cart that's been updated
 export const removeFromCart = item => ({
   type: REMOVE_FROM_CART,
   item
@@ -28,6 +28,8 @@ export const createCart = cart => ({
   cart
 })
 
+//que pasa? Do you need this payload 'cart'?
+//can just be 'export const clearCart = ()  => ....'
 export const clearCart = cart => ({
   type: CLEAR_CART,
   cart
@@ -59,10 +61,11 @@ export const postCart = item => {
       .catch(err => console.error(err));
   };
 };
-
+//can just call AddToCart
 export const putAddToCart = (cartId, itemToAdd, currentCartItems) => {
   return dispatch => {
     return axios
+    //`/api/cart/:cartId`
       .put(`/api/cart/`, {
         id: cartId,
         items: currentCartItems.concat([itemToAdd])
@@ -85,6 +88,8 @@ export const putRemoveFromCart = (cartId, itemToRemove, currentCartItems) => {
       })
       .then(res => res.data)
       .then(cart => {
+        //can call it `getCart(cart)`
+        //or update the DB and then filter out here
         const action = removeFromCart(cart);
         dispatch(action);
       })
@@ -93,10 +98,14 @@ export const putRemoveFromCart = (cartId, itemToRemove, currentCartItems) => {
 }
 
 //REDUCER
+//if reducers have the repeated functionality, i.e. GET_CART, CREATE_CART, you can reuse functions
+//always return a new object
 export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case ADD_TO_CART:
+    //changing the state where you will return an array instead of an object
       return state.items.concat([action.item]);
+      //return `item`; return cart;
     case REMOVE_FROM_CART:
       return state.items.filter(item => item.id !== action.item.id);
     case GET_CART:

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// ACTION TYPES 
+// ACTION TYPES
 const GET_SINGLE_INSTRUMENT = 'GET_SINGLE_INSTRUMENT';
 
 // ACTION CREATORS
@@ -11,7 +11,7 @@ export const getSingleInstrument = instrument => ({
 })
 
 // THUNKS
-
+//be wary of spacing/linter
 export const fetchSingleInstrument = id => {
     return dispatch => {
         return axios
@@ -25,7 +25,7 @@ export const fetchSingleInstrument = id => {
 }
 
 // REDUCER
-
+//be more specific than 'reducer' - more readable & you'll be able to debug more easily
 export default function reducer(state = {}, action) {
     switch (action.type) {
         case GET_SINGLE_INSTRUMENT:
@@ -33,4 +33,4 @@ export default function reducer(state = {}, action) {
         default:
             return state;
     }
-};
+}

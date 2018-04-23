@@ -3,6 +3,8 @@
 import React from 'react';
 import { Button, Divider, Form, Grid, Container, Header } from 'semantic-ui-react';
 
+//forms are typically stateful
+//if you don't introduce a local state - refactor into a functional component
 export default class EditAccount extends React.Component {
 
   render() {

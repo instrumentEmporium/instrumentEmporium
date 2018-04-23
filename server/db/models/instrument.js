@@ -19,6 +19,8 @@ const Instrument = db.define('instrument', {
   price: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    //this validation is for STRINGS
+    //prices below zero, unless you want to pay people
     validate: {
       notEmpty: true
     }
@@ -26,10 +28,12 @@ const Instrument = db.define('instrument', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    //inventory can't go below zero
     validate: {
       notEmpty: true
     }
   },
+  //validations: isUrl
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -44,6 +48,8 @@ const Instrument = db.define('instrument', {
       notEmpty: true
     }
   },
+  //GB: how does this update?
+  //Virtual vs. getter vs. hook
   rating: {
     type: Sequelize.INTEGER,
     defaultValue: 0,

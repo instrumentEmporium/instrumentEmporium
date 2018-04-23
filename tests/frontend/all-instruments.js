@@ -20,3 +20,7 @@ describe('store/reducers/instrument', () => {
       expect(currentStoreState).to.be.deep.equal([]);
   })
 });
+
+
+//REQUIREMENT: 1 test for Express, Sequelize, React, Redux - 4 tests each
+//HAVE TO HAVE TO HAVE TO WRITE TESTS!!!!!!

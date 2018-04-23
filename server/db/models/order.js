@@ -2,6 +2,9 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Order = db.define('order', {
+  //email address; guests can pull up past orders based off email
+  //security??
+  //Normalization for 'addresses' table; billing addresses v. shipping addresses
   items: {
     type: Sequelize.ARRAY(Sequelize.JSONB),
   },

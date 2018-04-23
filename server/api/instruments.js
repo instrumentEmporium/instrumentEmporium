@@ -26,6 +26,8 @@ router.get('/top-five', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
+  //Model.findById(+id)
+  //Geoff wants to dry it up
   Instrument.findOne({
     where: {
       id: +req.params.id

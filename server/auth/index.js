@@ -19,6 +19,13 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
+  /*{
+    name: 'Sarah'
+    isAdmin: true
+  }
+  */
+ //sanitization of your req.body before you create a user
+ //automatically set isAdmin to false
   User.create(req.body)
     .then(user => {
       req.login(user, err => (err ? next(err) : res.json(user)))

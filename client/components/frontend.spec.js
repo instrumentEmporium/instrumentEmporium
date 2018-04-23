@@ -27,7 +27,7 @@ describe('Cart', () => {
   let Cart
   console.log(Cart)
   beforeEach(() => {
-    Cart = shallow(<Cart cart={[{ Id: "1", name: "bassoon", price: "500", imageUrl: "sdf.sdf.com" }]} />)
+    Cart = shallow(<Cart cart={[{ Id: '1', name: 'bassoon', price: '500', imageUrl: 'sdf.sdf.com' }]} />)
   })
 
   it('renders the cart name in a grid row h3', () => {

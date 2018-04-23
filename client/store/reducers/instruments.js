@@ -26,6 +26,7 @@ export const fetchInstruments = () => {
         const action = getInstruments(instruments);
         dispatch(action);
       });
+      //catch your errors
   };
 };
 
@@ -38,6 +39,7 @@ export const fetchOneInstrument = id => {
         const action = upsertInstrument(instrument);
         dispatch(action);
       });
+      //!
   };
 };
 
@@ -55,4 +57,4 @@ export default function instrumentReducer(state = [], action) {
     default:
       return state;
   }
-};
+}
