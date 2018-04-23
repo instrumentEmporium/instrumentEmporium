@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Dropdown, Image, Grid, Icon, Button, Rating } from 'semantic-ui-react';
-const audio = document.createElement('audio');
+import AudioSample from './AudioSample';
 
 
 const options = [
@@ -13,35 +13,12 @@ const options = [
 ]
 
 export default class SingleInstrument extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      audioPlaying: false
-    }
-  }
-
-
+  
   componentDidMount() {
     if (this.props.loadInstrument) {
       this.props.loadInstrument();
     }
     this.props.loadCart();
-  }
-
-  componentWillUnmount() {
-    this.stopAudio()
-  }
-
-  playAudio(audioUrl) {
-    audio.src = audioUrl;
-    audio.load();
-    audio.play();
-    this.setState({ audioPlaying: true })
-  }
-
-  stopAudio() {
-    audio.pause();
-    this.setState({audioPlaying: false})
   }
 
   render() {
@@ -63,10 +40,7 @@ export default class SingleInstrument extends React.Component {
           <Grid celled>
             <Grid.Column width={3}>
               <Image src={singleInstrument && singleInstrument.imageUrl} />
-                {this.state.audioPlaying === false ?
-                  <Button icon='play' content='Play Sample' onClick={() => this.playAudio(singleInstrument.audioUrl)}></Button> :
-                  <Button icon='stop' content='Stop' onClick={() => this.stopAudio()}></Button>
-                }
+              <AudioSample instrument={singleInstrument} />
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid.Row>
