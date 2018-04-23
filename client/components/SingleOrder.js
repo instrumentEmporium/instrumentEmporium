@@ -39,7 +39,7 @@ export default class SingleOrder extends React.Component {
             }}>
                 <Grid celled>
                 <Grid.Column width={3}>
-                    <h3>Name: {singleOrder && singleOrder.firstName}{singleOrder.lastName}</h3>
+                    <h3>Name: {singleOrder && singleOrder.firstName} {singleOrder.lastName}</h3>
                 </Grid.Column>
                 <Grid.Column width={8}>
                     <Grid.Row>
