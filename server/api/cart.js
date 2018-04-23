@@ -60,7 +60,7 @@ router.delete('/', (req, res, next) => {
         userId: req.user.id
       }
     })
-      .then(affectedRows => res.status(204))
+      .then(affectedRows => res.sendStatus(204))
       .catch(next);
   } else {
     Order.destroy({
@@ -69,7 +69,7 @@ router.delete('/', (req, res, next) => {
         sessionId: req.session.id
       }
     })
-      .then(affectedRows => res.status(204))
+      .then(affectedRows => res.sendStatus(204))
       .catch(next);
   }
 })

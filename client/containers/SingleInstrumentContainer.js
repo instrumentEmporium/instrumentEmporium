@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import SingleInstrument from '../components/SingleInstrument';
-import { fetchSingleInstrument, fetchCart, postCart, addToCart } from '../store';
+import { fetchSingleInstrument, fetchCart, postCart, addToCart, editCart } from '../store';
 
 const mapStateToProps = (storeState) => ({
     singleInstrument: storeState.singleInstrument,
@@ -23,6 +23,10 @@ const mapStateToProps = (storeState) => ({
     },
     createCart: (item) => {
       const action = postCart(item);
+      return dispatch(action);
+    },
+    editCart: (cartId, itemToAdd, currentCartItems) => {
+      const action = editCart(cartId, itemToAdd, currentCartItems);
       return dispatch(action);
     }
   });
