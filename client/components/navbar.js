@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import { Menu, Segment, Icon } from 'semantic-ui-react';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, cart }) => (
   <div>
 
     <Segment inverted>
@@ -16,7 +16,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Menu.Item as={Link} to="/" name="Home" />
           <Menu.Item as={Link} to="/instruments" name="Instruments" />
           <Menu.Menu position="right">
-            <Menu.Item as={Link} to="/cart">
+            <Menu.Item as={Link} to={`/carts/${cart.id}`}>
             <Icon name="cart" size="large" color="teal" />
             </Menu.Item>
             <Menu.Item as={Link} to="/myAccount" name="My Account" />
@@ -32,7 +32,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <Menu.Menu position="right">
               <Menu.Item as={Link} to="/login" name="Login" />
               <Menu.Item as={Link} to="/signup" name="Signup" />
-              <Menu.Item as={Link} to="/cart">
+              <Menu.Item as={Link} to={`/carts/${cart.id}`}>
                 <Icon name="cart" size="large" color="teal" />
               </Menu.Item>
             </Menu.Menu>
@@ -48,7 +48,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    cart: state.cart
   }
 };
 
