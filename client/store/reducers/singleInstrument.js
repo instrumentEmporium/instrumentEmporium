@@ -29,8 +29,8 @@ export const fetchSingleInstrument = id => {
 export default function reducer(state = {}, action) {
     switch (action.type) {
         case GET_SINGLE_INSTRUMENT:
-            return action.instrument
+            return action.instrument;
         default:
             return state;
     }
-}
+};
