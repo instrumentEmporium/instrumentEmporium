@@ -1,37 +1,19 @@
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-// import SingleInstrument from '../components/SingleInstrument';
-// import { fetchSingleInstrument, fetchCart, postCart, putAddToCart } from '../store';
+import SingleOrder from '../components/SingleOrder';
+import { fetchOrder } from '../store';
 
-// const mapStateToProps = (storeState, ownProps) => ({
-//     singleInstrument: storeState.singleInstrument,
-//     cart: storeState.cart
-//   });
+const mapStateToProps = (state, ownProps) => ({
+    singleOrder: state.singleOrder
+});
 
-//   const mapDispatchToProps = (dispatch, ownProps) => ({
-//     loadInstrument: () => {
-//       const action = fetchSingleInstrument(+(ownProps.match.params.id));
-//       return dispatch(action);
-//     },
-//     loadCart: () => {
-//       const action = fetchCart();
-//       return dispatch(action);
-//     },
-//     addToCart: (cartId, itemToAdd, currentCartItems) => {
-//       const action = putAddToCart(cartId, itemToAdd, currentCartItems);
-//       return dispatch(action);
-//     },
-//     createCart: (item) => {
-//       const action = postCart(item);
-//       return dispatch(action);
-//     }
-//   });
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    loadSingleOrder: () => {
+        const action = fetchOrder(+ownProps.match.params.id);
+        return dispatch(action);
+    }
+});
 
-// const SingleInstrumentContainer = connect(mapStateToProps, mapDispatchToProps)(SingleInstrument);
+const SingleOrderContainer = connect(mapStateToProps, mapDispatchToProps)(SingleOrder);
 
-// export default SingleInstrumentContainer;
-
-
-
-
-//Change into single order instead of singleInstrument
+export default SingleOrderContainer;

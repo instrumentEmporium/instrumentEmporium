@@ -1,90 +1,105 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { Dropdown, Image, Grid, Icon, Button} from 'semantic-ui-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Grid, Header, Card } from 'semantic-ui-react'
+import Instrument from '../components/Instrument';
 
-// export default class SingleInstrument extends React.Component {
+export default class SingleOrder extends React.Component {
 
+    constructor(props){
+        super(props)
+        this.state = {
+            phone: '',
+            address1: '',
+            address2: '',
+            city: '',
+            unitedState: '',
+            zip: ''
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+    componentDidMount() {
+        this.props.loadSingleOrder();
+    }
 
-//     componentDidMount() {
-//         if (this.props.loadInstrument) {
-//             this.props.loadInstrument();
-//         }
-//         this.props.loadCart();
-//     }
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
-//     render() {
-//         const { singleInstrument, cart } = this.props;
-//         return (
-//           <div>
-//             <Button
-//               as={Link}
-//               to={'/instruments'}
-//               style={{
-//                   marginLeft: '4em',
-//                   marginTop: '2em'
-//               }}>
-//               <Icon name="left arrow" />Back to all instruments
-//             </Button>
-//               <Grid style={{
-//                 margin: '2em'
-//               }}>
-//                 <Grid celled>
-//                   <Grid.Column width={3}>
-//                     <Image src={singleInstrument && singleInstrument.imageUrl} />
-//                   </Grid.Column>
-//                   <Grid.Column width={8}>
-//                     <Grid.Row>
-//                       <h3>Name: {singleInstrument && singleInstrument.name}</h3>
-//                     </Grid.Row>
-//                     <Grid.Row>
-//                       <h3>Price: ${singleInstrument && singleInstrument.price}</h3>
-//                     </Grid.Row>
-//                     <Grid.Row>
-//                       <h3>Rating:
-//                         <Rating icon="star" maxRating={5} rating={singleInstrument.rating} disabled />
-//                       </h3>
-//                     </Grid.Row>
-//                     <Grid.Row>
-//                       <h3>Quantity:
-//                         <Dropdown compact selection defaultValue={1} options={options} />
-//                         <Button onClick={() => {
-//                           let currentItem = {
-//                             id: +singleInstrument.id, price: +singleInstrument.price, quantity: 1
-//                           }
-//                           cart.items && cart.items.length ? this.props.addToCart(cart.id, currentItem, cart.items) : this.props.createCart(currentItem)}}>
-//                           <Icon name="add to cart" size="large" color="teal" />
-//                         </Button>
-//                       </h3>
-//                     </Grid.Row>
-//                   </Grid.Column>
-//                 </Grid>
-//               </Grid>
-//                 {singleInstrument.reviews && singleInstrument.reviews.map(review => {
-//                   return (
-//                     <Grid style={{
-//                       margin: '2em'
-//                     }}>
-//                       <Grid celled>
-//                         <Grid.Column width={4}>
-//                           <h3>Name: {review.user.email}</h3>  {/* Set this value to fullname after a getter for*/}
-//                         </Grid.Column>
-//                         <Grid.Column width={6}>
-//                           <Grid.Row>
-//                             <h3>Name: {singleInstrument && singleInstrument.name}</h3>
-//                             <h3>Rating:
-//                               <Rating icon="star" maxRating={5} rating={review.rating} disabled />
-//                             </h3>
-//                           </Grid.Row>
-//                         </Grid.Column>
-//                       </Grid>
-//                     </Grid>
-//                     )
-//                   })
-//                 }
-//             </div>
-//         )
-//     }
-// }
+        this.setState({
+            [name]: value
+        });
+    }
 
-
-// cahnge instrument into order
+    render() {
+        const { singleOrder } = this.props;
+        return (
+            <Grid style={{
+                margin: '2em'
+            }}>
+                <Grid celled>
+                <Grid.Column width={3}>
+                    <h3>Name: {singleOrder && singleOrder.firstName}{singleOrder.lastName}</h3>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                    <Grid.Row>
+                    <h3>Phone#: {singleOrder && singleOrder.phoneNumber}</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                    <h3>Address1: {singleOrder && singleOrder.addressLine1}</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                    <h3>Address2: {singleOrder && singleOrder.addressLine2}</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                    <h3>City: {singleOrder && singleOrder.city}</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <h3>State: {singleOrder && singleOrder.state}</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                            <h3>Zip: {singleOrder && singleOrder.zip}</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                            <h3>UserId: {singleOrder && singleOrder.userId}</h3>         
+                    </Grid.Row>
+                    <Grid.Row>
+                        
+                    </Grid.Row>
+                </Grid.Column>
+                </Grid>
+                <Grid celled>
+                    <Grid.Column width={3}>
+                        <h2>Change Details</h2>
+                        <form>
+                            <label>
+                                <h3>Phone#: </h3>
+                                <input onChange={this.handleInputChange} name='phone' value={this.state.phone}/>
+                            </label>
+                            <label>
+                                <h3>Address 1: </h3>
+                                <input onChange={this.handleInputChange} name='address1' value={this.state.address1}/>
+                            </label>
+                            <label>
+                                <h3>Address 2: </h3>
+                                <input onChange={this.handleInputChange} name='address2' value={this.state.address2}/>
+                            </label>
+                            <label>
+                                <h3>City: </h3>
+                                <input onChange={this.handleInputChange} name='city' value={this.state.city}/>
+                            </label>
+                            <label>
+                                <h3>State: </h3>
+                                <input onChange={this.handleInputChange} name='unitedState' value={this.state.unitedState}/>
+                            </label>
+                            <label>
+                                <h3>Zip: </h3>
+                                <input onChange={this.handleInputChange} name='zip' value={this.state.zip}/>
+                            </label>
+                        </form>
+                    </Grid.Column>
+                </Grid>
+            </Grid>
+        )
+    }
+}

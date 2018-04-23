@@ -4,13 +4,13 @@ import axios from 'axios';
 const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER';
 
 // ACTION CREATOR 
-export const getSingleOrder = order => {
+export const getSingleOrder = order => ({
     type: GET_SINGLE_ORDER,
-    order
-}
+    order: order
+})
 // THUNK CREATOR 
 
-export const fetchOrder = () => {
+export const fetchOrder = id => {
     return dispatch => {
         return axios.get(`/api/orders/${id}`)
         .then(res => res.data)
