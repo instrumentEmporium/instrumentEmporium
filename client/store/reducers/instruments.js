@@ -41,7 +41,6 @@ export const fetchOneInstrument = id => {
   };
 };
 
-
 //REDUCER
 export default function instrumentReducer(state = [], action) {
   switch (action.type) {
