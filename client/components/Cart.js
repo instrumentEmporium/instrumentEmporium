@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Grid, Icon, Card, Container, Button, Dropdown, Header } from 'semantic-ui-react';
 
-
 export default class Cart extends React.Component {
     componentDidMount() {
+      if (this.props.loadInstruments) {
+        this.props.loadInstruments();
+      }
         if (this.props.loadCart) {
-            this.props.loadCart();
-        }
-        if (this.props.loadInstruments) {
-          this.props.loadInstruments();
+            this.props.loadCart(this.props.cart.id);
         }
     }
 
@@ -41,7 +40,7 @@ export default class Cart extends React.Component {
                             item.quantity}</h3>
                           </Grid.Row>
                           <Grid.Row>
-                            <Button animated color="red" size= "small" onClick={() => this.props.removeFromCart(cart.id, singleItem, cart.items)}>
+                            <Button animated color="red" size= "small" onClick={() => this.props.removeFromCart(singleItem, cart)}>
                               <Button.Content visible>Remove from Cart</Button.Content>
                               <Button.Content hidden>
                                 <Icon name="remove circle" size="large" />
@@ -58,7 +57,9 @@ export default class Cart extends React.Component {
                       Take me back to the shop
                       </Button>
                       <Button.Or />
-                      <Button color="teal" size="large">Continue to Checkout</Button>
+                      <Button as={Link} to={`/carts/${cart.id}/checkout`} color="teal" size="large">
+                        Continue to Checkout
+                      </Button>
                     </Button.Group>
                   </Container>
                 ) :
