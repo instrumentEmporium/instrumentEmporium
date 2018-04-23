@@ -4,19 +4,26 @@ import React from 'react';
 import { Button, Divider, Form, Grid, Container, Header } from 'semantic-ui-react';
 
 export default class EditAccount extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
 
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
   render() {
 
     return (
       <Container fluid textAlign='center'>
         <Header size='large'>Edit My Account</Header>
-        <Form size='large'>
+        <Form size='large' onSubmit={this.handleSubmit}>
           <Form.Group widths='equal'>
             <Grid centered>
               <Grid.Column width='6'  >
                 <Grid.Row >
                   <div>
-                    <Form.Field label='First name' control='input' placeholder='First name' />
+                    <Form.Field label='First name' control='input' placeholder='First name'  />
                   </div>
                   <div>
                     <Form.Field label='Last name' control='input' placeholder='Last name' />
