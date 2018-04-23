@@ -1,26 +1,32 @@
 import { connect } from 'react-redux';
 
-import Admin from '../components/AdminPage';
-// import {  } from '../store'; import axios requests from store
+import AdminPage from '../components/AdminPage';
+import { fetchUsers, fetchOrders, fetchInstruments, fetchDeleteInstrument } from '../store';
 
-const mapStateToProps = (storeState) => ({
-    // cart: storeState.cart,
-    // instruments: storeState.instruments
+const mapStateToProps = (state) => ({
+    users: state.users,
+    orders: state.orders,
+    instruments: state.instruments,
+    admin: state.user.admin
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCart: () => {
-    const action = fetchCart();
+  loadOrders: () => {
+    const action = fetchOrders();
+    return dispatch(action);
+  },
+  loadUsers: () => {
+    const action = fetchUsers();
     return dispatch(action);
   },
   loadInstruments: () => {
     const action = fetchInstruments();
     return dispatch(action);
+  },
+  deleteInstrument: (id) => {
+    const action = fetchDeleteInstrument(id);
+    return dispatch(action);
   }
-  // Load orders 
-  // load users
-  //
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
-
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage);

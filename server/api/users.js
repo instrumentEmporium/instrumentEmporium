@@ -14,4 +14,3 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-

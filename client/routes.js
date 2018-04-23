@@ -9,6 +9,7 @@ import SingleInstrumentContainer from './containers/SingleInstrumentContainer';
 import HomeContainer from './containers/HomeContainer';
 import CartContainer from './containers/CartContainer'
 import EditAccount from './components/EditAccount';
+import AdminContainer from './containers/AdminContainer';
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/myAccount" component={UserHome} />
               <Route path="/editAccount" component={EditAccount} />
+              <Route exact path="/admin-dash" component={AdminContainer} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
