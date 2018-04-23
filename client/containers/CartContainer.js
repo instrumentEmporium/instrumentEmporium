@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Cart from '../components/Cart';
-import { fetchCart, fetchInstruments, putRemoveFromCart } from '../store';
+import { fetchCart, fetchInstruments, removeFromCart } from '../store';
 
 const mapStateToProps = (storeState) => ({
     cart: storeState.cart,
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(action);
   },
   removeFromCart: (cartId, itemToRemove, currentCartItems) => {
-    const action = putRemoveFromCart(cartId, itemToRemove, currentCartItems);
+    const action = removeFromCart(cartId, itemToRemove, currentCartItems);
     return dispatch(action);
   }
 });

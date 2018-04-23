@@ -3,10 +3,10 @@ const { Order } = require('../db/models');
 
 router.put(`/`, (req, res, next) => {
   Order.findById(req.body.id)
-  .then(order => order.update(req.body))
-  .then(updatedOrder => {
-    res.status(200).json(updatedOrder);
-  })
+    .then(order => order.update(req.body))
+    .then(updatedOrder => {
+      res.status(200).json(updatedOrder);
+    })
 })
 
 router.get('/', (req, res, next) => {
