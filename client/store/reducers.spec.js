@@ -49,8 +49,4 @@ describe('thunk creators', () => {
       })
     })
   })
-
-
-
-
 })
