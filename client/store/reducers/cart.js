@@ -56,7 +56,27 @@ export const addToCart = (itemToAdd, currentCart) => {
   };
 };
 
+<<<<<<< HEAD
+export const editCart = (cartId, itemToUpdate, currentCartItems) => {
+  return dispatch => {
+    return axios
+      .put(`/api/cart/`, {
+        id: cartId,
+        items: currentCartItems.filter(item => item.id !== itemToUpdate.id).concat([itemToUpdate])
+      })
+      .then(res => res.data)
+      .then(cart => {
+        const action = getCart(cart);
+        dispatch(action);
+      })
+      .catch(err => console.error(err));
+  }
+}
+
+export const removeFromCart = (cartId, itemToRemove, currentCartItems) => {
+=======
 export const removeFromCart = (itemToRemove, currentCart) => {
+>>>>>>> master
   return dispatch => {
     return axios
       .put(`/api/carts/${currentCart.id}`, {
