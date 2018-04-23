@@ -51,6 +51,9 @@ const Instrument = db.define('instrument', {
       min: 0,
       max: 5
     }
+  },
+  audioUrl: {
+    type: Sequelize.STRING,
   }
 });
 
