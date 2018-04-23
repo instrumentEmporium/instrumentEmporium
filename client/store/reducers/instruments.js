@@ -55,4 +55,4 @@ export default function instrumentReducer(state = [], action) {
     default:
       return state;
   }
-}
+};
