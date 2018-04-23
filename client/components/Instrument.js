@@ -11,6 +11,7 @@ export default class Instrument extends React.Component {
 
   render() {
     const { instrument } = this.props;
+
     return (
       <Grid.Column mobile={16} tablet={8} computer={4}>
         <Card>
