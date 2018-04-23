@@ -1,5 +1,6 @@
-import axios from 'axios';
-import history from '../../history';
+import axios from 'axios'
+import history from '../../history'
+import { getCart } from './cart';
 
 /**
  * ACTION TYPES
@@ -44,7 +45,8 @@ export const logout = () =>
     axios.post('/auth/logout')
       .then(_ => {
         dispatch(removeUser());
-        history.push('/login');
+        dispatch(getCart({}));
+        history.push('/');
       })
       .catch(err => console.log(err));
 
