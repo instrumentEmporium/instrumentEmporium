@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Image, Grid, Header, Icon, Rating, Card } from 'semantic-ui-react'
+import { Image, Grid, Header, Icon, Rating, Card } from 'semantic-ui-react';
 
 export default class Instrument extends React.Component {
   componentDidMount() {

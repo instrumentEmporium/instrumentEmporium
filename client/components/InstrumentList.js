@@ -38,7 +38,7 @@ export default class InstrumentList extends React.Component {
 
     return (
       <React.Fragment>
-        <Header as="h1" textAlign="left" style={{marginLeft: '17px'}}>Instruments For Sale</Header>
+        <Header as="h1" textAlign="left" style={{ marginLeft: '17px' }}>Instruments For Sale</Header>
         <Grid columns="equal" padded>
           <Grid.Column width={3}>
             <Menu vertical id="sidebar">
@@ -68,7 +68,7 @@ export default class InstrumentList extends React.Component {
             <Container textAlign="center">
               <Grid columns={4} >
                 {Array.isArray(instruments) && instruments.map(instrument => (
-                    <Instrument instrument={instrument} key={instrument.id} />
+                  <Instrument instrument={instrument} key={instrument.id} />
                 )
                 )}
               </Grid>

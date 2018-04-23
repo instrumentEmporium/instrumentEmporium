@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default class Carousel extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             index: 1
         }
@@ -13,13 +13,13 @@ export default class Carousel extends React.Component {
 
     componentDidMount() {
         let intervalId = setInterval(() => {
-            this.setState({ index: this.state.index + 1 })
+            this.setState({ index: this.state.index + 1 });
         }, 5000);
-        this.setState({intervalId:intervalId})
+        this.setState({intervalId:intervalId});
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.intervalId)
+        clearInterval(this.state.intervalId);
     }
 
     render() {
