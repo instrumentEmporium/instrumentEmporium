@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import { Menu, Segment, Icon } from 'semantic-ui-react';
+import { Menu, Segment, Icon, Dropdown } from 'semantic-ui-react';
 
 const Navbar = ({ handleClick, isLoggedIn, admin }) => (
   <div>
@@ -20,7 +20,13 @@ const Navbar = ({ handleClick, isLoggedIn, admin }) => (
             <Menu.Item as={Link} to="/cart">
             <Icon name="cart" size="large" color="teal" />
             </Menu.Item>
-            <Menu.Item as={Link} to="/myAccount" name="My Account" />
+           {/* <Menu.Item as={Link} to="/myAccount" name="My Account" /> */}
+           <Dropdown text="Settings" pointing='down' className='link item'>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to='/myAccount'>My Account</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/editAccount">Edit My Account</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
             <Menu.Item name="Logout" onClick={handleClick} />
           </Menu.Menu>
           </Menu>
