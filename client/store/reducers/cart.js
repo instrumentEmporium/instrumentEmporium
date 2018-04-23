@@ -3,17 +3,11 @@ import axios from 'axios';
 //ACTION TYPES
 const GET_CART = 'GET_CART';
 const CLEAR_CART = 'CLEAR_CART';
-const CREATE_CART = 'CREATE_CART';
 
 export const getCart = cart => ({
   type: GET_CART,
   cart
 });
-
-// export const createCart = cart => ({
-//   type: CREATE_CART,
-//   cart
-// })
 
 export const clearCart = cart => ({
   type: CLEAR_CART,
@@ -21,10 +15,10 @@ export const clearCart = cart => ({
 });
 
 //THUNK CREATORS
-export const fetchCart = () => {
+export const fetchCart = cartId => {
   return dispatch => {
     return axios
-      .get(`/api/cart`)
+      .get(`/api/carts/${cartId}`)
       .then(res => res.data)
       .then(cart => {
         const action = getCart(cart);
@@ -37,7 +31,7 @@ export const fetchCart = () => {
 export const postCart = item => {
   return dispatch => {
     return axios
-      .post(`/api/cart`, item)
+      .post(`/api/carts`, item)
       .then(res => res.data)
       .then(newCart => {
         const action = getCart(newCart);
@@ -47,12 +41,11 @@ export const postCart = item => {
   };
 };
 
-export const addToCart = (cartId, itemToAdd, currentCartItems) => {
+export const addToCart = (itemToAdd, currentCart) => {
   return dispatch => {
     return axios
-      .put(`/api/cart/`, {
-        id: cartId,
-        items: currentCartItems.concat([itemToAdd])
+      .put(`/api/carts/${currentCart.id}`, {
+        items: currentCart.items.concat([itemToAdd])
       })
       .then(res => res.data)
       .then(cart => {
@@ -60,9 +53,10 @@ export const addToCart = (cartId, itemToAdd, currentCartItems) => {
         dispatch(action);
       })
       .catch(err => console.error(err));
-  }
-}
+  };
+};
 
+<<<<<<< HEAD
 export const editCart = (cartId, itemToUpdate, currentCartItems) => {
   return dispatch => {
     return axios
@@ -80,11 +74,13 @@ export const editCart = (cartId, itemToUpdate, currentCartItems) => {
 }
 
 export const removeFromCart = (cartId, itemToRemove, currentCartItems) => {
+=======
+export const removeFromCart = (itemToRemove, currentCart) => {
+>>>>>>> master
   return dispatch => {
     return axios
-      .put(`/api/cart`, {
-        id: cartId,
-        items: currentCartItems.filter(item => item.id !== itemToRemove.id)
+      .put(`/api/carts/${currentCart.id}`, {
+        items: currentCart.items.filter(item => item.id !== itemToRemove.id)
       })
       .then(res => res.data)
       .then(cart => {
@@ -92,8 +88,8 @@ export const removeFromCart = (cartId, itemToRemove, currentCartItems) => {
         dispatch(action);
       })
       .catch(err => console.error(err));
-  }
-}
+  };
+};
 
 //REDUCER
 export default function cartReducer(state = {}, action) {
@@ -102,10 +98,7 @@ export default function cartReducer(state = {}, action) {
       return action.cart;
     case CLEAR_CART:
       return {};
-    // case CREATE_CART:
-    //   return action.cart;
     default:
       return state;
   }
 }
-

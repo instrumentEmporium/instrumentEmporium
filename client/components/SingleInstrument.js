@@ -117,6 +117,19 @@ export default class SingleInstrument extends React.Component {
                               <Rating icon="star" maxRating={5} rating={review.rating} disabled />
                       </h3>
                     </Grid.Row>
+                    <Grid.Row>
+                      <h3>Quantity:
+                        <Dropdown compact selection defaultValue={1} options={options} />
+                        <Button onClick={() => {
+                          let currentItem = {
+                            id: +singleInstrument.id, price: +singleInstrument.price, quantity: 1
+                          }
+                          cart.items && cart.id ? this.props.addToCart(currentItem, cart) : this.props.createCart(currentItem)
+                        }}>
+                          <Icon name="add to cart" size="large" color="teal" />
+                        </Button>
+                      </h3>
+                    </Grid.Row>
                   </Grid.Column>
                 </Grid>
               </Grid>

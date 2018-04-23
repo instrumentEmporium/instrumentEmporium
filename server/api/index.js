@@ -5,7 +5,7 @@ router.use('/users', require('./users'));
 
 router.use('/instruments', require('./instruments'));
 
-router.use('/cart', require('./cart'));
+router.use('/carts', require('./carts'));
 
 router.use('/orders', require('./orders'));
 

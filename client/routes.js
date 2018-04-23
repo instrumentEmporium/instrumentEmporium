@@ -3,12 +3,14 @@ import {connect} from 'react-redux';
 import {withRouter, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {Login, Signup, UserHome} from './components';
-import {me} from './store';
+import {me, fetchCart, fetchInstruments} from './store';
 import InstrumentListContainer from './containers/InstrumentListContainer';
 import SingleInstrumentContainer from './containers/SingleInstrumentContainer';
 import HomeContainer from './containers/HomeContainer';
 import CartContainer from './containers/CartContainer'
 import EditAccount from './components/EditAccount';
+import CheckoutContainer from './containers/CheckoutContainer';
+
 import AdminContainer from './containers/AdminContainer';
 import SingleOrderContainer from './containers/SingleOrderContainer';
 
@@ -17,7 +19,7 @@ import SingleOrderContainer from './containers/SingleOrderContainer';
  */
 class Routes extends Component {
   componentDidMount () {
-    this.props.loadInitialData()
+    this.props.loadInitialData();
   }
 
   render () {
@@ -31,7 +33,8 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/instruments" component={InstrumentListContainer} />
         <Route exact path="/instruments/:id" component={SingleInstrumentContainer} />
-        <Route exact path="/cart" component={CartContainer} />
+        <Route exact path="/carts/:id" component={CartContainer} />
+        <Route exact path= "/carts/:id/checkout" component={CheckoutContainer} />
         {
           isLoggedIn &&
             <Switch>
@@ -64,6 +67,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchCart())
+      dispatch(fetchInstruments())
     }
   }
 }

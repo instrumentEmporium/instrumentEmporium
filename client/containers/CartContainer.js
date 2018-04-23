@@ -4,13 +4,13 @@ import Cart from '../components/Cart';
 import { fetchCart, fetchInstruments, removeFromCart, editCart } from '../store';
 
 const mapStateToProps = (storeState) => ({
-    cart: storeState.cart,
-    instruments: storeState.instruments
+  cart: storeState.cart,
+  instruments: storeState.instruments
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCart: () => {
-    const action = fetchCart();
+  loadCart: (cartId) => {
+    const action = fetchCart(cartId);
     return dispatch(action);
   },
   loadInstruments: () => {

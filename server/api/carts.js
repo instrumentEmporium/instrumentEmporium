@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const { Order } = require('../db/models');
 
-router.put(`/`, (req, res, next) => {
-  Order.findById(req.body.id)
+router.put(`/:id`, (req, res, next) => {
+  Order.findById(req.params.id)
     .then(order => order.update(req.body))
     .then(updatedOrder => {
       res.status(200).json(updatedOrder);
     })
 })
 
-router.get('/', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   let foundOrder;
   if (req.user) {
     foundOrder = Order.findOne({
@@ -37,6 +37,18 @@ router.get('/', (req, res, next) => {
     .catch(next);
 })
 
+router.get('/:id/checkout', (req, res, next) => {
+  Order.findById(req.params.id)
+    .then(order => {
+      if (order) {
+        res.status(200).json(order);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch(next)
+});
+
 router.post('/', (req, res, next) => {
   let userId = req.user ? req.user.id : null;
   let sessionId = userId ? null : req.session.id;
@@ -50,7 +62,7 @@ router.post('/', (req, res, next) => {
     .catch(next);
 })
 
-router.delete('/', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   let userId = req.user ? req.user.id : null;
   let sessionId = req.session.id;
   if (req.user) {
