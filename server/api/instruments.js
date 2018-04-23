@@ -39,4 +39,20 @@ router.get('/:id', (req, res, next) => {
   .catch(next);
 })
 
+router.delete('/:id', (req, res, next) => {
+  Instrument.destroy({
+    where: {
+      id: +req.params.id
+    }
+  })
+  .then(status => res.status(201).json({
+    error: false,
+    message: 'Instrument has been deleted.'
+  }))
+  .catch(error => res.json({
+    error: true,
+    error: error
+  }));
+})
+
 module.exports = router;

@@ -9,8 +9,8 @@ const mapStateToProps = (storeState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCart: () => {
-    const action = fetchCart();
+  loadCart: (cartId) => {
+    const action = fetchCart(cartId);
     dispatch(action);
   },
   loadInstruments: () => {
