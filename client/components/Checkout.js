@@ -87,7 +87,7 @@ export class Checkout extends React.Component {
             <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" />
             <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" />
           </Form.Group>
-          <Button size="large" type='submit'>Submit</Button>
+          <Button size="large" type='submit'>Place your Order</Button>
       </Form>
       </Container>
       </div>
@@ -96,9 +96,6 @@ export class Checkout extends React.Component {
 }
 
 // CONTAINER
-
-import { fetchUsers, fetchOrders, fetchInstruments, fetchDeleteInstrument } from '../store';
-import { EditAccount } from './EditAccount';
 
 const mapStateToProps = (state) => ({
     user: state.user

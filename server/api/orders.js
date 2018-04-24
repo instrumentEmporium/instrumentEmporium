@@ -42,7 +42,8 @@ Order.findById(req.params.id)
         addressLine2,
         city,
         state,
-        zip
+        zip,
+        fulfilled: true
         });
      } else {
        res.sendStatus(404);
