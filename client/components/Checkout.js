@@ -74,18 +74,18 @@ export class Checkout extends React.Component {
         <Container textAlign="center">
         <Form id="checkoutForm" onSubmit={this.handleSubmit}>
           <Form.Group >
-            <Form.Field label="First name" placeholder="First Name" width={5} control="input" onChange={this.handleInputChange} name="firstName" />
-            <Form.Field label="Last Name" placeholder="Last Name" width={5} control="input" onChange={this.handleInputChange} name="lastName" />
-            <Form.Field label="Phone Number" placeholder="Phone Number" width={4} control="input" onChange={this.handleInputChange} name="phoneNumber" />
+            <Form.Field label="First name" placeholder="First Name" width={5} control="input" onChange={this.handleInputChange} name="firstName" value={this.state.firstName} />
+            <Form.Field label="Last Name" placeholder="Last Name" width={5} control="input" onChange={this.handleInputChange} name="lastName" value={this.state.lastName} />
+            <Form.Field label="Phone Number" placeholder="Phone Number" width={4} control="input" onChange={this.handleInputChange} name="phoneNumber" value={this.state.phoneNumber} />
           </Form.Group>
           <Form.Group>
-            <Form.Field label="Address Line 1" placeholder="Address Line 1" width={8} control="input" onChange={this.handleInputChange} name="addressLine1" />
-            <Form.Field label="Address Line 2"  placeholder="Address Line 2" width={6} control="input" onChange={this.handleInputChange} name="addressLine2" />
+            <Form.Field label="Address Line 1" placeholder="Address Line 1" width={8} control="input" onChange={this.handleInputChange} name="addressLine1" value={this.state.addressLine1} />
+            <Form.Field label="Address Line 2"  placeholder="Address Line 2" width={6} control="input" onChange={this.handleInputChange} name="addressLine2" value={this.state.addressLine2} />
             </Form.Group>
             <Form.Group>
-            <Form.Field label="City" placeholder="City" width={8} control="input" onChange={this.handleInputChange} name="city" />
-            <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" />
-            <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" />
+            <Form.Field label="City" placeholder="City" width={8} control="input" onChange={this.handleInputChange} name="city" value={this.state.city} />
+            <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" value={this.state.state} />
+            <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" value={this.state.zip} />
           </Form.Group>
           <Button size="large" type='submit'>Place Your Order</Button>
       </Form>
