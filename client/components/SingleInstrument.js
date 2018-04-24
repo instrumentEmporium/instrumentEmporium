@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AudioSample from './AudioSample';
+import  ReviewsContainer from '../containers/ReviewsContainer';
 import { Dropdown, Image, Grid, Icon, Button, Rating } from 'semantic-ui-react';
 
-const options = [1,2,3,4,5]
+const options = [1, 2, 3, 4, 5]
 
 export default class SingleInstrument extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ export default class SingleInstrument extends React.Component {
           <Grid celled>
             <Grid.Column width={3}>
               <Image src={singleInstrument && singleInstrument.imageUrl} />
-              <AudioSample instrument={singleInstrument}/>
+              <AudioSample instrument={singleInstrument} />
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid.Row>
@@ -101,7 +102,9 @@ export default class SingleInstrument extends React.Component {
               </Grid.Row>
             </Grid.Column>
           </Grid>
+            <ReviewsContainer />
         </Grid>
+<<<<<<< HEAD
         {singleInstrument.reviews && singleInstrument.reviews.map(review => {
           return (
             <Grid key={review.id} style={{
@@ -124,6 +127,8 @@ export default class SingleInstrument extends React.Component {
           )
         })
         }
+=======
+>>>>>>> master
       </div>
     )
   }

@@ -42,6 +42,14 @@ export const fetchDeleteInstrument = id => {
         });
     }
   }
+
+export const postReview = (review, instrumentId) => {
+    return dispatch => {
+        return axios
+          .post(`/api/instruments/reviews/${instrumentId}`)
+          .then(res => res.data)
+    }
+}
   
 // REDUCER
 
