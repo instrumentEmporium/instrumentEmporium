@@ -12,7 +12,7 @@ export default class AdminPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            admin: false
+            admin: null
         };
         this.handleDeleteInstrument = this.handleDeleteInstrument.bind(this);
         this.handleAdminSubmit = this.handleAdminSubmit.bind(this);
@@ -35,10 +35,8 @@ export default class AdminPage extends React.Component {
     }
 
     handleAdminSubmit(event) {
-        let bool;
-        if (event.target.admin) bool = false;
-        else bool = true;
-        this.setState({admin: bool})
+        if (event.target.admin) this.setState({admin: false});
+        else this.setState({admin: true})
         this.props.changeAdmin(event.target.value, this.state);
     }
 
@@ -99,8 +97,8 @@ export default class AdminPage extends React.Component {
                                                     <h3>Admin Status: {user.admin ? <span>True</span> : <span>False</span>} </h3>
                                                     <h3>Change Status: 
                                                     {user.admin ? 
-                                                        <Button content='Remove Admin' onClick={this.handleAdminSubmit} admin={0} value={user.id} /> 
-                                                        : <Button content='Promote Status' onClick={this.handleAdminSubmit} admin={1} value={user.id} /> 
+                                                        <Button content='Remove Admin' onClick={this.handleAdminSubmit} admin={1} value={user.id} /> 
+                                                        : <Button content='Promote Status' onClick={this.handleAdminSubmit} admin={0} value={user.id} /> 
                                                     }</h3>
                                                 </Card>
                                             </div>
