@@ -86,8 +86,7 @@ export default class SingleInstrument extends React.Component {
                             id: +singleInstrument.id, price: +singleInstrument.price, quantity: +this.state.quantity
                           }
                           cart.items && cart.id ? this.props.editCart(currentItem, cart) : this.props.createCart(currentItem)
-                        }}>
-                      </Button> :
+                        }} /> :
                       <Button onClick={() => {
                         let currentItem = {
                           id: +singleInstrument.id, price: +singleInstrument.price, quantity: +this.state.quantity
@@ -105,7 +104,7 @@ export default class SingleInstrument extends React.Component {
         </Grid>
         {singleInstrument.reviews && singleInstrument.reviews.map(review => {
           return (
-            <Grid style={{
+            <Grid key={review.id} style={{
               margin: '2em'
             }}>
               <Grid celled>
