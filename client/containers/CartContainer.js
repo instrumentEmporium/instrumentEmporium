@@ -9,16 +9,16 @@ const mapStateToProps = (storeState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCart: (cartId) => {
-    const action = fetchCart(cartId);
+  loadCart: () => {
+    const action = fetchCart();
     return dispatch(action);
   },
   loadInstruments: () => {
     const action = fetchInstruments();
     return dispatch(action);
   },
-  removeFromCart: (itemToRemove, currentCartItems) => {
-    const action = removeFromCart(itemToRemove, currentCartItems);
+  removeFromCart: (itemToRemove, currentCart) => {
+    const action = removeFromCart(itemToRemove, currentCart);
     return dispatch(action);
   },
   editCart: (itemToAdd, currentCartItems) => {
