@@ -7,7 +7,8 @@ export default class InstrumentList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: '',
+      categoryInput: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -59,8 +60,8 @@ export default class InstrumentList extends React.Component {
               <Menu.Item name="Brass" active={categoryInput === 'Brass'} onClick={this.handleClick}>
                 Brass
               </Menu.Item>
-              <Menu.Item>
-                <Input icon="search" placeholder="Search instruments" onChange={this.handleChange} />
+              <Menu.Item >
+                <Input icon="search" placeholder="Search instruments" onChange={this.handleChange} disabled={categoryInput !== ''} />
               </Menu.Item>
             </Menu>
           </Grid.Column>

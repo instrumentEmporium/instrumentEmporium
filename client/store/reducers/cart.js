@@ -15,10 +15,10 @@ export const clearCart = cart => ({
 });
 
 //THUNK CREATORS
-export const fetchCart = cartId => {
+export const fetchCart = () => {
   return dispatch => {
     return axios
-      .get(`/api/carts/${cartId}`)
+      .get(`/api/carts/myCart`)
       .then(res => res.data)
       .then(cart => {
         const action = getCart(cart);
