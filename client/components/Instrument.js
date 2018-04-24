@@ -16,9 +16,9 @@ export default class Instrument extends React.Component {
       <Grid.Column mobile={16} tablet={8} computer={4}>
         <Card>
           <Link to={`/instruments/${instrument.id}`}>
-            <Header as="h3">
+            <h3>
               {instrument.name}
-            </Header>
+            </h3>
             <Image src={instrument.imageUrl} width={'160px'} height={'160px'} rounded bordered centered />
             Price: ${instrument.price}
             <div>Rating:
