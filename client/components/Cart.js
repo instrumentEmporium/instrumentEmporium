@@ -8,7 +8,7 @@ export default class Cart extends React.Component {
         this.props.loadInstruments();
       }
         if (this.props.loadCart) {
-            this.props.loadCart(this.props.cart.id);
+            this.props.loadCart();
         }
     }
 

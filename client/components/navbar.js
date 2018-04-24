@@ -17,7 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn, admin, cart }) => (
           <Menu.Item as={Link} to="/instruments" name="Instruments" />
           {admin ? <Menu.Item as={Link} to="/admin-dash" name="Admin" /> : null}
           <Menu.Menu position="right">
-            <Menu.Item as={Link} to={`/carts/${cart.id}`}>
+            <Menu.Item as={Link} to={`/carts/myCart}`}>
             <Icon name="cart" size="large" color="teal" />
             </Menu.Item>
            {/* <Menu.Item as={Link} to="/myAccount" name="My Account" /> */}
@@ -39,7 +39,7 @@ const Navbar = ({ handleClick, isLoggedIn, admin, cart }) => (
             <Menu.Menu position="right">
               <Menu.Item as={Link} to="/login" name="Login" />
               <Menu.Item as={Link} to="/signup" name="Signup" />
-              <Menu.Item as={Link} to={`/carts/${cart.id}`}>
+              <Menu.Item as={Link} to={`/carts/myCart`}>
                 <Icon name="cart" size="large" color="teal" />
               </Menu.Item>
             </Menu.Menu>

@@ -9,7 +9,7 @@ router.put(`/:id`, (req, res, next) => {
     })
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/myCart', (req, res, next) => {
   let foundOrder;
   if (req.user) {
     foundOrder = Order.findOne({
