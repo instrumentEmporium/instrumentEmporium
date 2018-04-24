@@ -80,6 +80,16 @@ export const shippingAddress = (cartId, user) => {
     }
   }
 
+export const putAdminStatus = (id, user) => {
+  return dispatch => 
+  axios.put(`api/users/admin/${id}`, user)
+    .then(res => res.data)
+    .then(newAdmin => {
+      dispatch(putUser(newAdmin))
+    })
+    .catch(err => console.log(err));
+}
+
 /**
  * REDUCER
  */

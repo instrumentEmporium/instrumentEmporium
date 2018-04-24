@@ -46,7 +46,7 @@ export default class SingleInstrument extends React.Component {
           as={Link}
           to={'/instruments'}
           style={{
-            marginLeft: '4em',
+            marginLeft: '5em',
             marginTop: '2em'
           }}>
           <Icon name="left arrow" />Back to all instruments
@@ -54,7 +54,7 @@ export default class SingleInstrument extends React.Component {
         <Grid style={{
           margin: '2em'
         }}>
-          <Grid celled>
+          <Grid celled style={{margin: '3em'}}>
             <Grid.Column width={3}>
               <Image src={singleInstrument && singleInstrument.imageUrl} />
               <AudioSample instrument={singleInstrument} />
@@ -93,7 +93,6 @@ export default class SingleInstrument extends React.Component {
                         let currentItem = {
                           id: +singleInstrument.id, price: +singleInstrument.price, quantity: +this.state.quantity
                         }
-                        console.log(cart)
                         cart.items && cart.id ? this.props.addToCart(currentItem, cart) : this.props.createCart(currentItem)
                       }}>
                         <Icon name="add to cart" size="large" color="teal" />

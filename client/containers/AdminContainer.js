@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
 import AdminPage from '../components/AdminPage';
-import { fetchUsers, fetchOrders, fetchInstruments, fetchDeleteInstrument } from '../store';
+import { fetchUsers, fetchOrders, fetchInstruments, fetchDeleteInstrument, putAdminStatus } from '../store';
 
 const mapStateToProps = (state) => ({
-    users: state.users,
+    users: state.allUsers,
     orders: state.orders,
     instruments: state.instruments,
     admin: state.user.admin
@@ -25,6 +25,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   deleteInstrument: (id) => {
     const action = fetchDeleteInstrument(id);
+    return dispatch(action);
+  },
+  changeAdmin: (id, bool) => {
+    const action = putAdminStatus(id, bool);
     return dispatch(action);
   }
 });
