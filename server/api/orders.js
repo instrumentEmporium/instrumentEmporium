@@ -32,7 +32,7 @@ router.put('/:id', (req, res, next) => {
 
 Order.findById(req.params.id)
    .then(order => {
-     if (order){
+     if(order){
        res.status(201);
        return order.update({
         firstName,
@@ -42,7 +42,8 @@ Order.findById(req.params.id)
         addressLine2,
         city,
         state,
-        zip
+        zip,
+        fulfilled: true
         });
      } else {
        res.sendStatus(404);
