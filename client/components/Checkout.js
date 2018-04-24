@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button, Header, Container, List, Image, Form, Divider } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import { shippingAddress } from '../store';
+import Stripe from './Stripe';
 
-export class Checkout extends React.Component {
+export default class Checkout extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -14,7 +13,8 @@ export class Checkout extends React.Component {
       addressLine2: this.props.user.addressLine2 || '',
       city: this.props.user.city || '',
       state: this.props.user.state || '',
-      zip: this.props.user.zip || ''
+      zip: this.props.user.zip || '',
+      totalPrice: this.price
     }
   }
 
@@ -37,13 +37,13 @@ export class Checkout extends React.Component {
     });
   }
 
-  handleSubmit(event){
-    event.preventDefault();
-    this.props.shippingAddressThunk(this.props.user.id, this.state);
+  handleSubmit(){
+    this.props.submitOrder(this.props.cart.id, this.state);
   }
 
   render() {
     const { cart, instruments } = this.props;
+    let price;
     return (
       <div>
         <Header as="h1" textAlign="center" style={{padding: '20px'}}>Checkout</Header>
@@ -67,7 +67,9 @@ export class Checkout extends React.Component {
             </List>
         </Container>
         <Header as="h2" textAlign="center">Total Price: ${
-          cart.items && cart.items.reduce((total, currentItem) => total + currentItem.price, 0)
+          cart.items && cart.items.reduce((total, currentItem) => {price = total + currentItem.price
+            return price;
+          }, 0)
         } </Header>
         <Divider />
         <Header as="h3" textAlign="center">Please enter your shipping details below:</Header>
@@ -87,24 +89,11 @@ export class Checkout extends React.Component {
             <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" value={this.state.state} />
             <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" value={this.state.zip} />
           </Form.Group>
-          <Button size="large" type='submit'>Place Your Order</Button>
+          <Button size="large" type='submit'> Place Your Order</Button>
       </Form>
       </Container>
+      <Stripe handleSubmit={this.handleSubmit} totalPrice={price} />
       </div>
     )
   }
 }
-
-// CONTAINER
-
-const mapStateToProps = (state) => ({
-    user: state.user
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    shippingAddressThunk (id, user) {
-      dispatch(shippingAddress(id, user))
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
