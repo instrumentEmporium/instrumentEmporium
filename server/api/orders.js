@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Sequelize = require('sequelize');
-const { Order } = require('../db/models') 
+const { Order } = require('../db/models')
 
 router.get('/', (req, res, next) => {
     Order.findAll({})
@@ -17,5 +17,43 @@ router.get('/:id', (req, res, next) => {
     .then(order => res.json(order))
     .catch(next);
 });
+
+router.put('/:id', (req, res, next) => {
+  const {
+    firstName,
+      lastName,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      zip,
+      phoneNumber,
+   } = req.body;
+
+Order.findById(req.params.id)
+   .then(order => {
+     if(order){
+       res.status(201);
+       return order.update({
+        firstName,
+        lastName,
+        phoneNumber,
+        addressLine1,
+        addressLine2,
+        city,
+        state,
+        zip,
+        fulfilled: true
+        });
+     } else {
+       res.sendStatus(404);
+     }
+   })
+   .then(order => {
+     res.json(order);
+   })
+   .catch(next);
+  });
+
 
 module.exports = router;

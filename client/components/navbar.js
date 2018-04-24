@@ -13,22 +13,22 @@ const Navbar = ({ handleClick, isLoggedIn, admin, cart }) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Menu inverted>
-          <Menu.Item as={Link} to="/" name="Home" />
-          <Menu.Item as={Link} to="/instruments" name="Instruments" />
-          {admin ? <Menu.Item as={Link} to="/admin-dash" name="Admin" /> : null}
-          <Menu.Menu position="right">
-            <Menu.Item as={Link} to={`/carts/myCart}`}>
-            <Icon name="cart" size="large" color="teal" />
-            </Menu.Item>
-           {/* <Menu.Item as={Link} to="/myAccount" name="My Account" /> */}
-           <Dropdown text="Settings" pointing='down' className='link item'>
-            <Dropdown.Menu>
-              <Dropdown.Item as={Link} to='/myAccount'>My Account</Dropdown.Item>
-              <Dropdown.Item as={Link} to="/editAccount">Edit My Account</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-            <Menu.Item name="Logout" onClick={handleClick} />
-          </Menu.Menu>
+            <Menu.Item as={Link} to="/" name="Home" />
+            <Menu.Item as={Link} to="/instruments" name="Instruments" />
+            {admin ? <Menu.Item as={Link} to="/admin-dash" name="Admin" /> : null}
+            <Menu.Menu position="right">
+              <Menu.Item as={Link} to={`/carts/myCart`}>
+                <Icon name="cart" size="large" color="teal" />
+              </Menu.Item>
+              {/* <Menu.Item as={Link} to="/myAccount" name="My Account" /> */}
+              <Dropdown text="Settings" pointing='down' className='link item'>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={Link} to='/myAccount'>My Account</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/editAccount">Edit My Account</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Menu.Item name="Logout" onClick={handleClick} />
+            </Menu.Menu>
           </Menu>
         </div>
       ) : (

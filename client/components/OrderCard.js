@@ -24,7 +24,8 @@ export default class Order extends React.Component {
               {/*Array.isArray(order.items) && order.items.map(instrument => (
               /* <Instrument instrument={instrument} key={instrument.id} />)
               )*/}</h3>
-              <h3>Name: {order.firstName}{order.lastName}</h3>
+              <h3>Name: {order.firstName}</h3> 
+              <h3>{order.lastName}</h3>
               <h3>Phone#: {order.phoneNumber}</h3>
               <h3>Address1:{order.addressLine1}</h3>
               <h3>Address2:{order.addressLine2}</h3>

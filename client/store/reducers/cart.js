@@ -42,10 +42,27 @@ export const postCart = item => {
 };
 
 export const addToCart = (itemToAdd, currentCart) => {
+  console.log(currentCart)
   return dispatch => {
     return axios
       .put(`/api/carts/${currentCart.id}`, {
         items: currentCart.items.concat([itemToAdd])
+      })
+      .then(res => res.data)
+      .then(cart => {
+        const action = getCart(cart);
+        dispatch(action);
+      })
+      .catch(err => console.error(err));
+  };
+};
+
+export const editCart = (itemToUpdate, currentCart) => {
+  console.log(currentCart)
+  return dispatch => {
+    return axios
+      .put(`/api/carts/${currentCart.id}`, {
+        items: currentCart.items.filter(item => item.id !== itemToUpdate.id).concat([itemToUpdate])
       })
       .then(res => res.data)
       .then(cart => {
