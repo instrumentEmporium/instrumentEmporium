@@ -1,6 +1,8 @@
+const stripe = require('stripe')('sk_test_S2jRfEwtxHqeeRLnwXLqnFmI');
 const router = require('express').Router();
 const Sequelize = require('sequelize');
 const { Order } = require('../db/models')
+
 
 router.get('/', (req, res, next) => {
     Order.findAll({})
@@ -18,42 +20,18 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/:id', (req, res, next) => {
-  const {
-    firstName,
-      lastName,
-      addressLine1,
-      addressLine2,
-      city,
-      state,
-      zip,
-      phoneNumber,
-   } = req.body;
+  router.post('/save-stripe-token', (req, res, next) => {
+    let amount = req.body.price * 100;
+      stripe.charges.create({
+        amount,
+        source: req.body.token.id,
+        description: 'Testing',
+        currency: 'usd',
+      })
+      .then(charge => res.status(201).json(charge))
+      .catch(next);
+    })
 
-Order.findById(req.params.id)
-   .then(order => {
-     if(order){
-       res.status(201);
-       return order.update({
-        firstName,
-        lastName,
-        phoneNumber,
-        addressLine1,
-        addressLine2,
-        city,
-        state,
-        zip,
-        fulfilled: true
-        });
-     } else {
-       res.sendStatus(404);
-     }
-   })
-   .then(order => {
-     res.json(order);
-   })
-   .catch(next);
-  });
 
 
 module.exports = router;
