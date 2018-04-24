@@ -87,7 +87,7 @@ export class Checkout extends React.Component {
             <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" />
             <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" />
           </Form.Group>
-          <Button size="large" type='submit'>Place your Order</Button>
+          <Button size="large" type='submit'>Place Your Order</Button>
       </Form>
       </Container>
       </div>
