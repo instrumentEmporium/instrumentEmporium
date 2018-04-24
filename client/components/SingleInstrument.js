@@ -88,8 +88,7 @@ export default class SingleInstrument extends React.Component {
                             id: +singleInstrument.id, price: +singleInstrument.price, quantity: +this.state.quantity
                           }
                           cart.items && cart.id ? this.props.editCart(currentItem, cart) : this.props.createCart(currentItem)
-                        }}>
-                      </Button> :
+                        }} /> :
                       <Button onClick={() => {
                         let currentItem = {
                           id: +singleInstrument.id, price: +singleInstrument.price, quantity: +this.state.quantity

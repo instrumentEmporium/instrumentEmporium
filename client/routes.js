@@ -33,7 +33,7 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/instruments" component={InstrumentListContainer} />
         <Route exact path="/instruments/:id" component={SingleInstrumentContainer} />
-        <Route exact path="/carts/:id" component={CartContainer} />
+        <Route exact path="/carts/myCart" component={CartContainer} />
         <Route exact path= "/carts/:id/checkout" component={CheckoutContainer} />
         {
           isLoggedIn &&
