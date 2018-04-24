@@ -35,7 +35,11 @@ export const auth = (email, password, method) =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data));
-        history.push('/editAccount');
+        if (method === 'signup'){
+          history.push('/editAccount');
+        } else {
+          history.push('/myAccount');
+        }
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({ error: authError }));
       })
@@ -62,15 +66,19 @@ export const updateUser = (id, user) => {
       .catch(err => console.log(err));
 }
 
-export const shippingAddress = (id, user) => {
-  return dispatch =>
-    axios.put(`/api/orders/${id}`, user)
+export const shippingAddress = (cartId, user) => {
+  user.fulfilled = true;
+  return dispatch => {
+    return axios.put(`/api/carts/${cartId}`, user)
       .then(res => res.data)
       .then(puttedUser => {
         dispatch(putUser(puttedUser))
+        dispatch(getCart({}));
+        history.push('/');
       })
       .catch(err => console.log(err));
     }
+  }
 
 export const putAdminStatus = (id, user) => {
   return dispatch => 

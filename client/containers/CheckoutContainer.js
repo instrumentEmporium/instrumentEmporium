@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
 import Checkout from '../components/Checkout';
-import { fetchCart, fetchInstruments } from '../store';
+import { fetchCart, fetchInstruments, shippingAddress } from '../store';
 
 const mapStateToProps = (storeState) => ({
   cart: storeState.cart,
-  instruments: storeState.instruments
+  instruments: storeState.instruments,
+  user: storeState.user
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
   loadInstruments: () => {
     const action = fetchInstruments();
     dispatch(action);
+  },
+  submitOrder: (id, user) => {
+    dispatch(shippingAddress(id, user));
   }
 });
 
