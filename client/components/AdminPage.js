@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Instrument from './Instrument';
 import Order from './OrderCard';
+import User from './UserCard';
+
 import { Grid, Container, Header, Menu, Input, Segment } from 'semantic-ui-react';
 
 export default class AdminPage extends React.Component {
@@ -11,6 +13,7 @@ export default class AdminPage extends React.Component {
         super(props);
         this.state = {};
         this.handleDeleteInstrument = this.handleDeleteInstrument.bind(this);
+        this.handleAdminSubmit = this.handleAdminSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +32,10 @@ export default class AdminPage extends React.Component {
         this.props.deleteInstrument(event.target.value);
     }
 
+    handleAdminSubmit(event) {
+        // this.props.changeAdmin(event.target.value);
+    }
+
     render() {
         const { users } = this.props;
         const { orders } = this.props;
@@ -36,7 +43,6 @@ export default class AdminPage extends React.Component {
 
         return (
             <div>
-
                 <h3>All Instruments</h3>
                 <Grid columns="equal" padded>
                     <Grid.Column width={16}>
@@ -81,7 +87,7 @@ export default class AdminPage extends React.Component {
                             {Array.isArray(users) && users.map(user => {
                                return (
                                     <div key={user.id}>
-                                        {/*<User user={user} id={user.id}/>*/}
+                                        <User user={user} id={user.id}/>
                                     </div>
                                     ) 
                                 }

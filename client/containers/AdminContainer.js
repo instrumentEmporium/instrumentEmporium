@@ -4,7 +4,7 @@ import AdminPage from '../components/AdminPage';
 import { fetchUsers, fetchOrders, fetchInstruments, fetchDeleteInstrument } from '../store';
 
 const mapStateToProps = (state) => ({
-    users: state.users,
+    users: state.allUsers,
     orders: state.orders,
     instruments: state.instruments,
     admin: state.user.admin
