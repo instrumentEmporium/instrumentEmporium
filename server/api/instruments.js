@@ -56,4 +56,13 @@ router.delete('/:id', isAdmin, (req, res, next) => {
   }));
 })
 
+router.post('/:id', (req, res, next) => {
+  let id = req.params.id;
+  Review.create(
+   req.body
+  )
+    .then(review => res.status(201).json(review))
+    .catch(next);
+})
+
 module.exports = router;
