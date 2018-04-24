@@ -102,8 +102,8 @@ export default class SingleInstrument extends React.Component {
                 </h3>
               </Grid.Row>
             </Grid.Column>
-            <ReviewsContainer />
           </Grid>
+            <ReviewsContainer />
         </Grid>
       </div>
     )
