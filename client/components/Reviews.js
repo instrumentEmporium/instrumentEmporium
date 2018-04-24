@@ -51,14 +51,14 @@ export default class Reviews extends React.Component {
                 </Grid>
                 :
                 <Grid style={{
-                    margin: '2em'
+                    margin: '1em'
                 }}>
                     <h1>Reviews</h1>
-                    {
-                        reviews && reviews.map(review => {
-                            return (
-                                <Grid.Row>
-                                    <Grid celled>
+                    <Grid celled>
+                        {
+                            reviews && reviews.map(review => {
+                                return (
+                                    <Grid.Row>
                                         <Grid.Column width={4}>
                                             <h3>Name: {review && review.user.email}</h3>  {/* Set this value to fullname after a getter for*/}
                                         </Grid.Column>
@@ -72,11 +72,12 @@ export default class Reviews extends React.Component {
                                                 <p>{review && review.body}</p>
                                             </Grid.Row>
                                         </Grid.Column>
-                                    </Grid>
-                                </Grid.Row>
+                                    </Grid.Row>
+                                )
+                            }
                             )
-                        })
-                    }
+                        }
+                    </Grid>
                     <Grid.Row centered>
                         {
                             !Object.keys(this.props.user).length ?
