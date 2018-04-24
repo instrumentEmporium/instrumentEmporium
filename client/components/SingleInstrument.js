@@ -39,6 +39,7 @@ export default class SingleInstrument extends React.Component {
 
   render() {
     const { singleInstrument, cart } = this.props;
+    console.log(singleInstrument)
     return (
       <div>
         <Button
