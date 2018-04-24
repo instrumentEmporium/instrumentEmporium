@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const { Instrument } = require('../db/models');
 const { Review } = require('../db/models');
 const { User } = require('../db/models');
+const isAdmin = require('./authMiddleware');
 
 router.get('/', (req, res, next) => {
   Instrument.findAll({})
@@ -39,7 +40,7 @@ router.get('/:id', (req, res, next) => {
   .catch(next);
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isAdmin, (req, res, next) => {
   Instrument.destroy({
     where: {
       id: +req.params.id
