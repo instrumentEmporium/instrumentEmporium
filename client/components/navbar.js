@@ -21,7 +21,7 @@ const Navbar = ({ handleClick, isLoggedIn, admin, cart }) => (
                 <Icon name="cart" size="large" color="teal" />
               </Menu.Item>
               {/* <Menu.Item as={Link} to="/myAccount" name="My Account" /> */}
-              <Dropdown text="Settings" pointing='down' className='link item'>
+              <Dropdown text="Settings" className='link item'>
                 <Dropdown.Menu>
                   <Dropdown.Item as={Link} to='/myAccount'>My Account</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/editAccount">Edit My Account</Dropdown.Item>
