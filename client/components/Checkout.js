@@ -1,12 +1,45 @@
 import React from 'react';
-import { Header, Container, List, Image, Form, Divider } from 'semantic-ui-react';
+import { Button, Header, Container, List, Image, Form, Divider } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { shippingAddress } from '../store';
 
-export default class Checkout extends React.Component {
+export class Checkout extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      firstName: this.props.user.firstName || '',
+      lastName: this.props.user.lastName || '',
+      phoneNumber: this.props.user.phoneNumber || '',
+      addressLine1: this.props.user.addressLine1 || '',
+      addressLine2: this.props.user.addressLine2 || '',
+      city: this.props.user.city || '',
+      state: this.props.user.state || '',
+      zip: this.props.user.zip || ''
+    }
+  }
+
   componentDidMount () {
       this.props.loadInstruments();
       if (this.props.cart.id) {
         this.props.loadCart(this.props.cart.Id);
       }
+
+      this.handleInputChange = this.handleInputChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange(event){
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    this.props.shippingAddressThunk(this.props.user.id, this.state);
   }
 
   render() {
@@ -39,21 +72,22 @@ export default class Checkout extends React.Component {
         <Divider />
         <Header as="h3" textAlign="center">Please enter your shipping details below:</Header>
         <Container textAlign="center">
-        <Form id="checkoutForm">
+        <Form id="checkoutForm" onSubmit={this.handleSubmit}>
           <Form.Group >
-            <Form.Field label="First name" placeholder="First Name" width={5} control="input" />
-            <Form.Field label="Last Name" placeholder="Last Name" width={5} control="input" />
-            <Form.Field label="Phone Number" placeholder="Phone Number" width={4} control="input" />
+            <Form.Field label="First name" placeholder="First Name" width={5} control="input" onChange={this.handleInputChange} name="firstName" />
+            <Form.Field label="Last Name" placeholder="Last Name" width={5} control="input" onChange={this.handleInputChange} name="lastName" />
+            <Form.Field label="Phone Number" placeholder="Phone Number" width={4} control="input" onChange={this.handleInputChange} name="phoneNumber" />
           </Form.Group>
           <Form.Group>
-            <Form.Field label="Address Line 1" placeholder="Address Line 1" width={8} control="input" />
-            <Form.Field label="Address Line 2"  placeholder="Address Line 2" width={6} control="input" />
+            <Form.Field label="Address Line 1" placeholder="Address Line 1" width={8} control="input" onChange={this.handleInputChange} name="addressLine1" />
+            <Form.Field label="Address Line 2"  placeholder="Address Line 2" width={6} control="input" onChange={this.handleInputChange} name="addressLine2" />
             </Form.Group>
             <Form.Group>
-            <Form.Field label="City" placeholder="City" width={8} control="input" />
-            <Form.Field label="State" placeholder="State" width={2} control="input" />
-            <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" />
+            <Form.Field label="City" placeholder="City" width={8} control="input" onChange={this.handleInputChange} name="city" />
+            <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" />
+            <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" />
           </Form.Group>
+          <Button size="large" type='submit'>Submit</Button>
       </Form>
       </Container>
       </div>
@@ -61,3 +95,19 @@ export default class Checkout extends React.Component {
   }
 }
 
+// CONTAINER
+
+import { fetchUsers, fetchOrders, fetchInstruments, fetchDeleteInstrument } from '../store';
+import { EditAccount } from './EditAccount';
+
+const mapStateToProps = (state) => ({
+    user: state.user
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    shippingAddressThunk (id, user) {
+      dispatch(shippingAddress(id, user))
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
