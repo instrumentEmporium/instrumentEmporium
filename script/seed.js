@@ -10,8 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db');
-const {User} = require('../server/db/models');
-const {Instrument} = require('../server/db/models');
+const {Instrument, Review, User} = require('../server/db/models');
 
 async function seed () {
   await db.sync({force: true})
@@ -19,12 +18,16 @@ async function seed () {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
 
-  // const users = await Promise.all([
-  //   User.create({email: 'cody@email.com', password: '123'}),
-  //   User.create({email: 'murphy@email.com', password: '123'})
-  // ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
+
+    const user = await Promise.all([
+      User.create({email: 'dummy@user.com', password: '123', firstName: 'Dummy', lastName: 'User', phoneNumber: '9192121', addressLine1: 'Dummy Street 7', addressLine2: 'apartment 9', city: 'Queens', state: 'NY', zip: '11000'}),
+      User.create({email: 'dummy@user2.com', password: '123', firstName: 'Dummy2', lastName: 'User2', phoneNumber: '9192121', addressLine1: 'Dummy Street 7', addressLine2: 'apartment 9', city: 'Queens', state: 'NY', zip: '11000'}),
+      User.create({email: 'dummy@user3.com', password: '123', firstName: 'Dummy3', lastName: 'User3', phoneNumber: '9192121', addressLine1: 'Dummy Street 7', addressLine2: 'apartment 9', city: 'Queens', state: 'NY', zip: '11000'}),
+      User.create({email: 'dummy@user4.com', password: '123', firstName: 'Dummy4', lastName: 'User4', phoneNumber: '9192121', addressLine1: 'Dummy Street 7', addressLine2: 'apartment 9', city: 'Queens', state: 'NY', zip: '11000'}),
+      User.create({email: 'dummy@user5.com', password: '123', firstName: 'Dummy5', lastName: 'User5', phoneNumber: '9192121', addressLine1: 'Dummy Street 7', addressLine2: 'apartment 9', city: 'Queens', state: 'NY', zip: '11000'})
+    ])
 
     const instruments = await Promise.all([
       Instrument.create({name: 'Piano', type: 'Keyboard', price: '250', quantity: '24', imageUrl: 'https://www.yamaha.com/en/musical_instrument_guide/common/images/piano/parts_viewer01.jpg', description: 'This is a very nice piano', rating: '4', audioUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Better_demostration_B55-64.ogg'}),
@@ -58,6 +61,37 @@ async function seed () {
       Instrument.create({name: 'Harpsichord', type: 'Keyboard', price: '550', quantity: '5', imageUrl: 'http://www.baroquemusic.org/Hieronymus%20Albrecht%20Hass%20Harpsichord%20(Hamburg,%201740).jpg', description: 'This is a very nice harpsichord', rating: '4'})
     ])
 
+    const reviews = await Promise.all([
+      Review.create({subject: 'This is my favorite piano ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 1, userId: 1}),
+      Review.create({subject: 'This is my favorite guitar ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 2, userId: 2}),
+      Review.create({subject: 'This is my favorite violin ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 3, userId: 3}),
+      Review.create({subject: 'This is my favorite saxophone ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 4, userId: 4}),
+      Review.create({subject: 'This is my favorite flute ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 5, userId: 5}),
+      Review.create({subject: 'This is my favorite drums ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 6, userId: 1}),
+      Review.create({subject: 'This is my favorite harp ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 7, userId: 2}),
+      Review.create({subject: 'This is my favorite trombone ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 8, userId: 3}),
+      Review.create({subject: 'This is my favorite ukulele ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 9, userId: 4}),
+      Review.create({subject: 'This is my favorite trumpet ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 10, userId: 5}),
+      Review.create({subject: 'This is my favorite french horn ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 11, userId: 1}),
+      Review.create({subject: 'This is my favorite didgeridoo ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 12, userId: 2}),
+      Review.create({subject: 'This is my favorite tuba ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 13, userId: 3}),
+      Review.create({subject: 'This is my favorite cello ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 14, userId: 4}),
+      Review.create({subject: 'This is my favorite viola ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 15, userId: 5}),
+      Review.create({subject: 'This is my favorite clarinet ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 16, userId: 1}),
+      Review.create({subject: 'This is my favorite bagpipes ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 17, userId: 2}),
+      Review.create({subject: 'This is my favorite bassoon ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 18, userId: 3}),
+      Review.create({subject: 'This is my favorite double bass ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 19, userId: 4}),
+      Review.create({subject: 'This is my favorite contrabassoon ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 20, userId: 5}),
+      Review.create({subject: 'This is my favorite bass drum ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 21, userId: 1}),
+      Review.create({subject: 'This is my favorite tabla ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 22, userId: 2}),
+      Review.create({subject: 'This is my favorite xylophone ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 23, userId: 3}),
+      Review.create({subject: 'This is my favorite triangle ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 24, userId: 4}),
+      Review.create({subject: 'This is my favorite tambourine ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 25, userId: 5}),
+      Review.create({subject: 'This is my favorite accordion ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 26, userId: 1}),
+      Review.create({subject: 'This is my favorite marimba ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 27, userId: 2}),
+      Review.create({subject: 'This is my favorite organ ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 28, userId: 3}),
+      Review.create({subject: 'This is my favorite harpsichord ever', body: 'I love this instrument because it plays amazing and the instrument emporium team is great. They helped me with picking the right instrument for me and my 5 year old son. Recommend, will deff buy again from Instrument Emporium ', rating: 5, instrumentId: 29, userId: 4})
+    ])
 
   // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
