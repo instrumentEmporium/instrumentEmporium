@@ -16,6 +16,7 @@ router.get('/', isAdmin, (req, res, next) => {
 })
 
 router.put('/admin/:id', (req, res, next) => {
+  console.log(req.body, '///////////////')
   const { admin } = req.body;
 
   User.findById(+req.params.id)

@@ -4,14 +4,16 @@ import Instrument from './Instrument';
 import Order from './OrderCard';
 import User from './UserCard';
 
-import { Grid, Container, Header, Menu, Input, Segment } from 'semantic-ui-react';
+import { Grid, Container, Header, Menu, Input, Segment, Card, Button } from 'semantic-ui-react';
 
 export default class AdminPage extends React.Component {
 
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            admin: false
+        };
         this.handleDeleteInstrument = this.handleDeleteInstrument.bind(this);
         this.handleAdminSubmit = this.handleAdminSubmit.bind(this);
     }
@@ -33,7 +35,11 @@ export default class AdminPage extends React.Component {
     }
 
     handleAdminSubmit(event) {
-        // this.props.changeAdmin(event.target.value);
+        let bool;
+        if (event.target.admin) bool = false;
+        else bool = true;
+        this.setState({admin: bool})
+        this.props.changeAdmin(event.target.value, this.state);
     }
 
     render() {
@@ -84,14 +90,24 @@ export default class AdminPage extends React.Component {
                     <Grid.Column width={16}>
                         <Container textAlign="center">
                             <Grid columns={12}>
-                            {Array.isArray(users) && users.map(user => {
-                               return (
-                                    <div key={user.id}>
-                                        <User user={user} id={user.id}/>
-                                    </div>
-                                    ) 
-                                }
-                            )}
+                                <Grid.Row mobile={16} tablet={8} computer={4}>
+                                    {Array.isArray(users) && users.map(user => {
+                                    return (
+                                            <div key={user.id}>
+                                                <Card>
+                                                    <User user={user} id={user.id}/>
+                                                    <h3>Admin Status: {user.admin ? <span>True</span> : <span>False</span>} </h3>
+                                                    <h3>Change Status: 
+                                                    {user.admin ? 
+                                                        <Button content='Remove Admin' onClick={this.handleAdminSubmit} admin={0} value={user.id} /> 
+                                                        : <Button content='Promote Status' onClick={this.handleAdminSubmit} admin={1} value={user.id} /> 
+                                                    }</h3>
+                                                </Card>
+                                            </div>
+                                            ) 
+                                        }
+                                    )}
+                                </Grid.Row>
                             </Grid>
                         </Container>
                     </Grid.Column>
