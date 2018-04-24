@@ -56,11 +56,8 @@ const Navbar = ({ handleClick, isLoggedIn, admin, cart }) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-<<<<<<< HEAD
-    cart: state.cart
-=======
+    cart: state.cart,
     admin: state.user.admin
->>>>>>> master
   }
 };
 

@@ -52,7 +52,7 @@ export const logout = () =>
       .catch(err => console.log(err));
 
 export const updateUser = (id, user) => {
-  return dispatch => 
+  return dispatch =>
      axios.put(`/api/users/${id}`, user)
      .then(res => res.data)
       .then(puttedUser => {
@@ -60,8 +60,18 @@ export const updateUser = (id, user) => {
         history.push('/myAccount')
       })
       .catch(err => console.log(err));
-
 }
+
+export const shippingAddress = (id, user) => {
+  return dispatch =>
+    axios.put(`/api/orders/${id}`, user)
+      .then(res => res.data)
+      .then(puttedUser => {
+        dispatch(putUser(puttedUser))
+      })
+      .catch(err => console.log(err));
+    }
+
 /**
  * REDUCER
  */
