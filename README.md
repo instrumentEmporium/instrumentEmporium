@@ -4,6 +4,9 @@ We are a passionate team that love instruments and music.
 
 We also sell instruments and they are very expensive.
 
+Check our website out at:
+
+https://instrument-emporium.herokuapp.com/
 
 ## Start
 

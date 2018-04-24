@@ -59,7 +59,7 @@ export default class SingleInstrument extends React.Component {
                           let currentItem = {
                             id: +singleInstrument.id, price: +singleInstrument.price, quantity: 1
                           }
-                          cart.items && cart.id ? this.props.addToCart(cart.id, currentItem, cart.items) : this.props.createCart(currentItem)}}>
+                          cart.items && cart.id ? this.props.addToCart(currentItem, cart) : this.props.createCart(currentItem)}}>
                           <Icon name="add to cart" size="large" color="teal" />
                         </Button>
                       </h3>
