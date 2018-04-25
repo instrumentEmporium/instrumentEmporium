@@ -51,7 +51,7 @@ export default class Reviews extends React.Component {
                 </Grid>
                 :
                 <Grid style={{
-                    margin: '1em'
+                    margin: '2em'
                 }}>
                     <h1>Reviews</h1>
                     <Grid celled>
@@ -86,28 +86,17 @@ export default class Reviews extends React.Component {
                                     <Button as={Link} to={`/login`}>Login</Button>
                                 </div>
                                 :
-                                <Form onSubmit={this.handleSubmit}>
-                                    <Grid.Row width={10}>
-                                        <div>
-                                            <Form.Field label='Title' control='input' width={10} placeholder='Title' name='subject' onChange={this.handleChange} />
-                                        </div>
-                                    </Grid.Row>
-                                    <Grid.Row>
-                                        <div>
-                                            <h3>Rating:
-                                                            <Rating icon="star" maxRating={5} rating={this.state.rating} onRate={this.handleRating} />
-                                            </h3>
-                                        </div>
-                                    </Grid.Row>
-                                    <Grid.Row>
-                                        <div>
-                                            <Form.TextArea label='Your review' width={10} placeholder='Tell us what you think!' name='body' onChange={this.handleChange} />
-                                        </div>
-                                    </Grid.Row>
+                                <form id='review' onSubmit={this.handleSubmit}>
                                     <div>
-                                        <Form.Button size='large' type='submit'>Submit</Form.Button>
+                                        <h3>Write your own review!</h3>
                                     </div>
-                                </Form>
+                                        <input id='review-input' label='Title' control='input' width={16} placeholder='Review Title' name='subject' onChange={this.handleChange} />
+                                        <h3>Rating:
+                                                <Rating icon="star" maxRating={5} rating={this.state.rating} onRate={this.handleRating} />
+                                        </h3>
+                                        <textarea id='review-body' label='Your review' width={10} placeholder='Tell us what you think!' name='body' onChange={this.handleChange} ></textarea>
+                                        <Form.Button size='large' type='submit'>Submit</Form.Button>
+                                </form>
                         }
                     </Grid.Row>
                 </Grid>
