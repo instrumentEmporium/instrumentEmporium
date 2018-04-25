@@ -14,7 +14,7 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:userId', (req, res, next) => {
+router.get('/history/:userId', (req, res, next) => {
   Order.findAll({
       where: {
           userId: +req.params.userId,

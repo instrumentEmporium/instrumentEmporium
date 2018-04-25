@@ -17,7 +17,6 @@ export default class Reviews extends React.Component {
     }
 
     handleChange(event) {
-        console.log(this.props)
         this.setState({ [event.target.name]: event.target.value })
     }
 

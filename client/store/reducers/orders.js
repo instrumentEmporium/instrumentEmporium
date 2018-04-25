@@ -24,7 +24,7 @@ export const fetchOrders = () => {
 
 export const fetchOrdersByUserId = (userId) => {
   return dispatch => {
-      return axios.get(`/api/orders/${userId}`)
+      return axios.get(`/api/orders/history/${userId}`)
       .then(res => res.data)
       .then(orders => {
           const action = getOrders(orders);
