@@ -64,7 +64,9 @@ export default class Cart extends React.Component {
                     </Grid>
                   )
                 })}
-                <Header as="h2"> Total:</Header>
+                <Header as="h2"> Total: ${cart.items && cart.items.reduce((total, currentItem) => {let price = total + (currentItem.price * currentItem.quantity)
+            return price;
+          }, 0)}</Header>
                 <Button.Group widths={5}>
                   <Button as={Link} to="/instruments" color="yellow" size="large">
                     Take me back to the shop
