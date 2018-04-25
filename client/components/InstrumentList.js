@@ -66,7 +66,7 @@ export default class InstrumentList extends React.Component {
             </Menu>
           </Grid.Column>
           <Grid.Column >
-            <Container textAlign="center">
+            <Container textAlign="center" id='products'>
               <Grid columns={4} >
                 {Array.isArray(instruments) && instruments.map(instrument => (
                   <Instrument instrument={instrument} key={instrument.id} />
