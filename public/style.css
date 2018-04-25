@@ -70,3 +70,13 @@ form div {
   height: 10em;
   font-size: 1.5em;
 }
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  height: 2em;
+}
