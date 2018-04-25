@@ -12,7 +12,8 @@ describe('Instrument Model', () => {
     describe('instanceMethods', () => {
         describe('Correct Validations', () => {
             let tuba;
-    
+
+
             beforeEach(() => {
                 return Instrument.create({
                     name: 'tuba',
@@ -28,10 +29,33 @@ describe('Instrument Model', () => {
                     tuba = instrument
                 })
             })
-    
             it('returns validation error if quantity is below zero', () => {
                 expect(tuba.instrument.dataValues.quantity).to.be.equal(false)
             })
+
+          })
         })
-    })
-})
+      })
+
+      describe('Proper form validation', () => {
+          let tabla;
+          beforeEach(() => {
+            return Instrument.create({
+              name: 'tabla',
+              type: 'percussion',
+              price: 210,
+              quantity: 2,
+              imageUrl: 'http://fillmurray.com',
+              description: 'I love this tabla',
+              rating: 4,
+              audioUrl: 'an audio url'
+            })
+            .then(instrument => {
+              tabla = instrument
+            })
+          })
+
+          it('should check if the instrument fields were set correctly', () => {
+            expect(tabla.rating).to.be.equal(4);
+          })
+      })
