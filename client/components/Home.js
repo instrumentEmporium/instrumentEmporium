@@ -31,7 +31,7 @@ export default class Home extends React.Component {
           {
             topFive && topFive.map(instrument => {
               return (
-                <Grid.Column width={3} key={instrument.id}>
+                <Grid.Column id='home-products' width={3} key={instrument.id}>
                   <Instrument instrument={instrument} />
                 </Grid.Column>
               )
