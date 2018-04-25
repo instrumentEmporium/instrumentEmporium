@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// ACTION TYPES 
+// ACTION TYPES
 const GET_TOP_FIVE = 'GET_TOP_FIVE';
 
 // ACTION CREATORS

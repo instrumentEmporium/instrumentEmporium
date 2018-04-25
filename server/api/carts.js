@@ -2,51 +2,12 @@ const router = require('express').Router();
 const { Order } = require('../db/models');
 
 router.put(`/:id`, (req, res, next) => {
-  console.log(req.params.id);
   Order.findById(req.params.id)
     .then(order => order.update(req.body))
     .then(updatedOrder => {
       res.status(200).json(updatedOrder);
     })
 })
-
-// router.put('/:id', (req, res, next) => {
-//   const {
-//     firstName,
-//       lastName,
-//       addressLine1,
-//       addressLine2,
-//       city,
-//       state,
-//       zip,
-//       phoneNumber,
-//    } = req.body;
-
-// Order.findById(req.params.id)
-//    .then(order => {
-//      if (order){
-//        res.status(201);
-//        return order.update({
-//         firstName,
-//         lastName,
-//         phoneNumber,
-//         addressLine1,
-//         addressLine2,
-//         city,
-//         state,
-//         zip,
-//         fulfilled: true
-//         });
-//      } else {
-//        res.sendStatus(404);
-//      }
-//    })
-//    .then(order => {
-//      res.json(order);
-//    })
-//    .catch(next);
-//   });
-
 
 router.get('/myCart', (req, res, next) => {
   let foundOrder;
@@ -102,8 +63,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
-  let userId = req.user ? req.user.id : null;
-  let sessionId = req.session.id;
   if (req.user) {
     Order.destroy({
       where: {
@@ -124,6 +83,5 @@ router.delete('/:id', (req, res, next) => {
       .catch(next);
   }
 })
-
 
 module.exports = router;

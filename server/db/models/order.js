@@ -19,13 +19,13 @@ const Order = db.define('order', {
     type: Sequelize.STRING
   },
   phoneNumber: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   addressLine1: {
     type: Sequelize.STRING
   },
   addressLine2: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   city: {
     type: Sequelize.STRING
