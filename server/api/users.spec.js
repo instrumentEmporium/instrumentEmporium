@@ -20,7 +20,7 @@ describe('User routes', () => {
       })
     })
 
-    it('GET /api/users', () => {
+    it('GET /api/users is blocked for non-admin users', () => {
       return request(app)
         .get('/api/users')
         .expect(401)
