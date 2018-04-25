@@ -80,7 +80,7 @@ export class EditAccount extends React.Component {
               </Grid.Column>
             </Grid>
           </Form.Group>
-          <Button size='large' type='submit' >Submit</Button>
+          <Button id='products' size='large' type='submit' >Submit</Button>
         </Form>
       </Container>
     )
