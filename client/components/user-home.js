@@ -15,7 +15,7 @@ export class UserHome extends React.Component {
 
   render(){
     const {email, name, orders, instruments} = this.props;
-
+    console.log(orders)
     return (
       <div>
         <h1>Welcome to your account, {name ? name : email}</h1>
