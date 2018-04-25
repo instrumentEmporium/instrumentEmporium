@@ -8,6 +8,7 @@ export default class Stripe extends React.Component {
       .then( () => {
         alert("THANK YOU FOR YOUR MONEY")
       })
+      .then(() => this.props.handleSubmit())
       .catch(err => console.log(err))
     };
 
@@ -28,7 +29,7 @@ export default class Stripe extends React.Component {
   zipCode={false}
   token={this.onToken}
   opened={this.onOpened}
-  closed={this.props.handleSubmit}
+  closed={this.onClosed}
   reconfigureOnUpdate={false}
   />
     )

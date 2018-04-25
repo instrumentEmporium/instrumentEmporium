@@ -19,7 +19,8 @@ router.get('/:id', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
   Order.findAll({
       where: {
-          userId: req.params.userId
+          userId: +req.params.userId,
+          fulfilled: true
       }
   })
   .then(orders => res.json(orders))

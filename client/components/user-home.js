@@ -14,13 +14,13 @@ export class UserHome extends React.Component {
   }
 
   render(){
-    const {email, name} = props;
+    const {email, name, orders} = this.props;
 
     return (
       <div>
         <h1>Welcome to your account, {name ? name : email}</h1>
         <h3> Past Orders </h3>
-          {this.props.orders.map(order => {
+          {orders && orders.map(order => {
             return <Order key={order.id} order={order} />
           })}
       </div>
@@ -41,13 +41,13 @@ const mapState = (state) => {
 }
 
 const mapDispatch = dispatch => ({
-  loadOrders: (userId) => {
+  loadOrders(userId){
       const action = fetchOrdersByUserId(userId);
       dispatch(action);
     }
 });
 
-export default connect(mapState)(mapDispatch)(UserHome)
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
