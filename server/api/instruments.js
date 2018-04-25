@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const Sequelize = require('sequelize');
 const { Instrument } = require('../db/models');
 const { Review } = require('../db/models');
 const { User } = require('../db/models');
@@ -51,13 +50,11 @@ router.delete('/:id', isAdmin, (req, res, next) => {
       message: 'Instrument has been deleted.'
     }))
     .catch(error => res.json({
-      error: true,
       error: error
     }));
 })
 
 router.post('/reviews/:id', (req, res, next) => {
-  console.log(req.body)
   Review.create(req.body)
     .then(review => res.status(201).json(review))
     .catch(next);

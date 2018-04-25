@@ -81,7 +81,7 @@ export const shippingAddress = (cartId, user) => {
   }
 
 export const putAdminStatus = (id, user) => {
-  return dispatch => 
+  return dispatch =>
   axios.put(`api/users/admin/${id}`, user)
     .then(res => res.data)
     .then(newAdmin => {
@@ -104,4 +104,4 @@ export default function (state = defaultUser, action) {
     default:
       return state;
   }
-};
+}

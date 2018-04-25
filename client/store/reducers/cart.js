@@ -42,7 +42,6 @@ export const postCart = item => {
 };
 
 export const addToCart = (itemToAdd, currentCart) => {
-  console.log(currentCart)
   return dispatch => {
     return axios
       .put(`/api/carts/${currentCart.id}`, {
@@ -58,7 +57,6 @@ export const addToCart = (itemToAdd, currentCart) => {
 };
 
 export const editCart = (itemToUpdate, currentCart) => {
-  console.log(currentCart)
   return dispatch => {
     return axios
       .put(`/api/carts/${currentCart.id}`, {

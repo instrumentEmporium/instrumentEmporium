@@ -39,7 +39,6 @@ export default class SingleInstrument extends React.Component {
 
   render() {
     const { singleInstrument, cart } = this.props;
-    console.log(singleInstrument)
     return (
       <div>
         <Button
@@ -78,6 +77,8 @@ export default class SingleInstrument extends React.Component {
                       return <option key={number} value={number}>{number}</option>
                     })}
                   </select>
+                  </h3>
+                  </Grid.Row>
                   {
                     this.checkCart(cart.items, +singleInstrument.id) ?
                       <Button
@@ -98,8 +99,6 @@ export default class SingleInstrument extends React.Component {
                         <Icon name="add to cart" size="large" color="teal" />
                       </Button>
                   }
-                </h3>
-              </Grid.Row>
             </Grid.Column>
           </Grid>
             <ReviewsContainer />
