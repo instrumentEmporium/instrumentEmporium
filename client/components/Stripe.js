@@ -1,12 +1,13 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import { Container } from 'semantic-ui-react';
 
 export default class Stripe extends React.Component {
   onToken = (token) => {
     return axios.post('/api/orders/save-stripe-token', ({token: token, price: this.props.totalPrice}))
       .then( () => {
-        alert("THANK YOU FOR YOUR MONEY")
+        alert('THANK YOU FOR YOUR MONEY');
       })
       .then(() => this.props.handleSubmit())
       .catch(err => console.log(err))
@@ -14,7 +15,7 @@ export default class Stripe extends React.Component {
 
   render() {
     return (
-
+      <Container textAlign='center'>
       <StripeCheckout
   name="Instrument Emporium"
   description="We love money"
@@ -32,6 +33,7 @@ export default class Stripe extends React.Component {
   closed={this.onClosed}
   reconfigureOnUpdate={false}
   />
+  </Container>
     )
   }
 }

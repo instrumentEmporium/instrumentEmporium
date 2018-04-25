@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Header, Container, List, Image, Form, Divider } from 'semantic-ui-react';
+import { Header, Container, List, Image, Form, Divider } from 'semantic-ui-react';
 import Stripe from './Stripe';
 
 export default class Checkout extends React.Component {
@@ -67,7 +67,7 @@ export default class Checkout extends React.Component {
             </List>
         </Container>
         <Header as="h2" textAlign="center">Total Price: ${
-          cart.items && cart.items.reduce((total, currentItem) => {price = total + currentItem.price
+          cart.items && cart.items.reduce((total, currentItem) => {price = total + (currentItem.price * currentItem.quantity)
             return price;
           }, 0)
         } </Header>
@@ -89,7 +89,6 @@ export default class Checkout extends React.Component {
             <Form.Field label="State" placeholder="State" width={2} control="input" onChange={this.handleInputChange} name="state" value={this.state.state} />
             <Form.Field label="Zip Code" placeholder="Zip Code" width={4} control="input" onChange={this.handleInputChange} name="zip" value={this.state.zip} />
           </Form.Group>
-          <Button size="large" type='submit'> Place Your Order</Button>
       </Form>
       </Container>
       <Stripe handleSubmit={this.handleSubmit} totalPrice={price} />

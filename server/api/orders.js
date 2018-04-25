@@ -1,8 +1,6 @@
 const stripe = require('stripe')('sk_test_S2jRfEwtxHqeeRLnwXLqnFmI');
 const router = require('express').Router();
-const Sequelize = require('sequelize');
 const { Order } = require('../db/models')
-
 
 router.get('/', (req, res, next) => {
     Order.findAll({})
@@ -38,7 +36,5 @@ router.get('/:userId', (req, res, next) => {
       .then(charge => res.status(201).json(charge))
       .catch(next);
     })
-
-
 
 module.exports = router;
