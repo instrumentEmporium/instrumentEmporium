@@ -1,15 +1,18 @@
 import axios from 'axios';
 
-// ACTION TYPES 
+// ACTION TYPES
+
 const GET_ALL_USERS = 'GET_ALL_USERS';
 
-// ACTION CREATOR 
+// ACTION CREATOR
+
 export const getAllUsers = users => ({
     type: GET_ALL_USERS,
     users
 });
 
-// THUNK CREATOR 
+// THUNK CREATOR
+
 export const fetchUsers = () => {
     return dispatch => {
         return axios.get(`/api/users`)
@@ -22,10 +25,9 @@ export const fetchUsers = () => {
     }
 };
 
-
 // SUBREDUCER
 export default function orderReducer(state = [], action) {
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALL_USERS:
             return action.users;
         default:

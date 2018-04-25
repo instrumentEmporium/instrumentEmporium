@@ -27,5 +27,3 @@ export * from './reducers/cart';
 export * from './reducers/singleOrder';
 export * from './reducers/orders';
 export * from './reducers/allUsers';
-
-

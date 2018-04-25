@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-// ACTION TYPES 
+// ACTION TYPES
 const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER';
 
-// ACTION CREATOR 
+// ACTION CREATOR
 export const getSingleOrder = order => ({
     type: GET_SINGLE_ORDER,
     order: order
 })
-// THUNK CREATOR 
+// THUNK CREATOR
 
 export const fetchOrder = id => {
     return dispatch => {
@@ -24,7 +24,7 @@ export const fetchOrder = id => {
 
 // SUBREDUCER
 export default function orderReducer(state = {}, action) {
-    switch(action.type) {
+    switch (action.type) {
         case GET_SINGLE_ORDER:
             return action.order;
         default:
