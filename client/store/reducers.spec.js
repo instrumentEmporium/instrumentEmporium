@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { fetchInstruments, fetchOneInstrument } from './reducers/instruments';
+import { fetchTopFive } from './reducers/topFive';
 import { postCart } from '../store';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -13,7 +14,7 @@ describe('thunk creators', () => {
   let store;
   let mockAxios;
 
-  let initialState = { instruments: [] };
+  let initialState = { instruments: [], topFive: [] };
 
   beforeEach(() => {
     mockAxios = new MockAdapter(axios);
@@ -61,6 +62,28 @@ describe('thunk creators', () => {
       .then(() => {
         const actions = store.getActions();
         expect(actions[0].cart).to.be.deep.equal(fakeInst);
+      })
+    })
+  })
+
+  initialState = { topFive: {} }
+
+  describe('getTopFive', () => {
+    it('eventually dispatches the GET_TOP_FIVE action', () => {
+      const fakeTopFive = [
+        {id: 1, name: 'Test guitar'},
+        {id: 2, name: 'Test tuba'},
+        {id: 3, name: 'Test piano'},
+        {id: 4, name: 'Test drum'},
+        {id: 5, name: 'Test zanzibar'}
+      ];
+
+      mockAxios.onGet('/api/instruments/top-five').replyOnce(200, fakeTopFive);
+      return store.dispatch(fetchTopFive(fakeTopFive))
+      .then(() => {
+        const actions = store.getActions();
+        expect(actions[0].type).to.be.equal('GET_TOP_FIVE');
+        expect(actions[0].topFive).to.be.deep.equal(fakeTopFive);
       })
     })
   })

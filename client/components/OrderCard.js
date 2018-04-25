@@ -19,7 +19,7 @@ export default class Order extends React.Component {
               <Header as="h3">
                 {order.id} {/* Change to user name, once associated */}
               </Header>
-              <h3>Status: {order.fulfilled}</h3>
+              <h2>Status: {order.fulfilled}</h2>
               <h3>Items:
               {/*Array.isArray(order.items) && order.items.map(instrument => (
               /* <Instrument instrument={instrument} key={instrument.id} />)

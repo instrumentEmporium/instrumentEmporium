@@ -20,14 +20,14 @@ const Instrument = db.define('instrument', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true
+      min: 0
     }
   },
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true
+      min: 0
     }
   },
   imageUrl: {
