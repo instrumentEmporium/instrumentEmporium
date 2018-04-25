@@ -1,10 +1,6 @@
 import axios from 'axios';
 
 // ACTION TYPES
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 const GET_ORDERS = 'GET_ORDERS';
 
 // ACTION CREATOR
@@ -13,12 +9,7 @@ export const getOrders = orders => ({
     orders
 });
 
-<<<<<<< HEAD
 // THUNK CREATORS
-=======
-// THUNK CREATOR
-
->>>>>>> master
 export const fetchOrders = () => {
     return dispatch => {
         return axios.get(`/api/orders`)
@@ -31,7 +22,6 @@ export const fetchOrders = () => {
     }
 };
 
-<<<<<<< HEAD
 export const fetchOrdersByUserId = (userId) => {
   return dispatch => {
       return axios.get(`/api/orders/${userId}`)
@@ -45,8 +35,6 @@ export const fetchOrdersByUserId = (userId) => {
 };
 
 
-=======
->>>>>>> master
 // SUBREDUCER
 export default function orderReducer(state = [], action) {
     switch (action.type) {
