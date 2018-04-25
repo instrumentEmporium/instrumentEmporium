@@ -9,13 +9,20 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    Order.findOne({
-        where: {
-            id: +req.params.id
-        }
-    })
+    Order.findById(+req.params.id)
     .then(order => res.json(order))
     .catch(next);
+});
+
+router.get('/history/:userId', (req, res, next) => {
+  Order.findAll({
+      where: {
+          userId: +req.params.userId,
+          fulfilled: true
+      }
+  })
+  .then(orders => res.json(orders))
+  .catch(next);
 });
 
   router.post('/save-stripe-token', (req, res, next) => {
