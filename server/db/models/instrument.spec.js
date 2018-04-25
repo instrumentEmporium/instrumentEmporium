@@ -9,8 +9,7 @@ describe('Instrument Model', () => {
         return db.sync({force: true})
     })
 
-    describe('instanceMethods', () => {
-        describe('Correct Validations', () => {
+        describe('Returns correct values', () => {
             let tuba;
 
 
@@ -18,7 +17,7 @@ describe('Instrument Model', () => {
                 return Instrument.create({
                     name: 'tuba',
                     type: 'brass',
-                    price: -5,
+                    price: 5,
                     quantity: 1,
                     imageUrl: 'hhtp:fakeurl.com',
                     description: 'Im testing this tuba',
@@ -29,13 +28,12 @@ describe('Instrument Model', () => {
                     tuba = instrument
                 })
             })
-            it('returns validation error if quantity is below zero', () => {
-                expect(tuba.instrument.dataValues.quantity).to.be.equal(false)
+            it('returns correct quantity', () => {
+                expect(tuba.quantity).to.be.equal(1)
             })
 
           })
         })
-      })
 
       describe('Proper form validation', () => {
           let tabla;
@@ -58,4 +56,6 @@ describe('Instrument Model', () => {
           it('should check if the instrument fields were set correctly', () => {
             expect(tabla.rating).to.be.equal(4);
           })
+
+
       })
