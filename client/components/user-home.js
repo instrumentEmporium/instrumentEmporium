@@ -1,20 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import user from '../store/reducers/user';
+import {user, fetchOrdersByUserId} from '../store/';
+import Order from './OrderCard';
 
 /**
  * COMPONENT
  */
-export const UserHome = (props) => {
-  const {email, name} = props
+export class UserHome extends React.Component {
 
-  return (
-    <div>
-      <h1>Welcome to your account, {name}</h1>
-      <h3> SHOW PAST ORDERS HERE I GUESS </h3>
-    </div>
-  )
+  componentDidMount () {
+    this.props.loadOrders(this.props.id);
+  }
+
+  render(){
+    const {email, name} = props;
+
+    return (
+      <div>
+        <h1>Welcome to your account, {name ? name : email}</h1>
+        <h3> Past Orders </h3>
+          {this.props.orders.map(order => {
+            return <Order key={order.id} order={order} />
+          })}
+      </div>
+    )
+  }
 }
 
 /**
@@ -23,11 +34,20 @@ export const UserHome = (props) => {
 const mapState = (state) => {
   return {
     email: state.user.email,
-    name: state.user.firstName
+    name: state.user.firstName,
+    id: state.user.id,
+    orders: state.orders
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => ({
+  loadOrders: (userId) => {
+      const action = fetchOrdersByUserId(userId);
+      dispatch(action);
+    }
+});
+
+export default connect(mapState)(mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
